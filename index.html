@@ -770,32 +770,190 @@
                     { question: "___ perspective envisagez-vous?", answer: "dans quelle" }
                 ]
             },
-            sentences: {
-                beginner: [
-                    { 
-                        instruction: "Я хочу вивчити французьку", 
-                        answer: "je veux apprendre le français",
-                        words: ["je", "veux", "apprendre", "le", "français", "parler", "bien", "maintenant"]
-                    },
-                    { 
-                        instruction: "Ми можемо говорити французькою", 
-                        answer: "nous pouvons parler français",
-                        words: ["nous", "pouvons", "parler", "français", "bien", "maintenant", "ici", "toujours"]
-                    }
-                ],
-                intermediate: [
-                    { 
-                        instruction: "Ми читаємо цікаві книги", 
-                        answer: "nous lisons des livres intéressants",
-                        words: ["nous", "lisons", "des", "livres", "intéressants", "souvent", "beaucoup", "ensemble"]
-                    }
-                ],
-                advanced: [
-                    { 
-                        instruction: "Якби я міг, я б подорожував", 
-                        answer: "si je pouvais je voyagerais",
-                        words: ["si", "je", "pouvais", "voyagerais", "dans", "le", "monde", "serais", "ferais"]
-                    }
+           sentences: {
+    beginner: [
+        { 
+            instruction: "Я хочу вивчити французьку", 
+            answer: "je veux apprendre le français",
+            words: ["je", "veux", "apprendre", "le", "français", "parler", "bien", "maintenant"]
+        },
+        { 
+            instruction: "Ми можемо говорити французькою", 
+            answer: "nous pouvons parler français",
+            words: ["nous", "pouvons", "parler", "français", "bien", "maintenant", "ici", "toujours"]
+        },
+        { 
+            instruction: "Вони йдуть до школи", 
+            answer: "ils vont à l'école",
+            words: ["ils", "vont", "à", "l'école", "demain", "souvent", "tard", "ensemble"]
+        },
+        { 
+            instruction: "Я роблю домашнє завдання", 
+            answer: "je fais mes devoirs",
+            words: ["je", "fais", "mes", "devoirs", "maintenant", "toujours", "bien", "vite"]
+        },
+        { 
+            instruction: "Ти можеш мені допомогти", 
+            answer: "tu peux m'aider",
+            words: ["tu", "peux", "m'aider", "maintenant", "demain", "toujours", "bien", "vite"]
+        },
+        { 
+            instruction: "Вона говорить дуже добре", 
+            answer: "elle parle très bien",
+            words: ["elle", "parle", "très", "bien", "français", "fort", "doucement", "vite"]
+        },
+        { 
+            instruction: "Ми закінчуємо роботу", 
+            answer: "nous finissons le travail",
+            words: ["nous", "finissons", "le", "travail", "maintenant", "demain", "bientôt", "tard"]
+        },
+        { 
+            instruction: "Ви йдете додому", 
+            answer: "vous allez à la maison",
+            words: ["vous", "allez", "à", "la", "maison", "maintenant", "bientôt", "ensemble"]
+        },
+        { 
+            instruction: "Я студент університету", 
+            answer: "je suis étudiant à l'université",
+            words: ["je", "suis", "étudiant", "à", "l'université", "jeune", "intelligent", "sérieux"]
+        },
+        { 
+            instruction: "У мене є велика сім'я", 
+            answer: "j'ai une grande famille",
+            words: ["j'ai", "une", "grande", "famille", "belle", "petite", "heureuse", "unie"]
+        },
+        { 
+            instruction: "Вони живуть у Парижі", 
+            answer: "ils habitent à paris",
+            words: ["ils", "habitent", "à", "paris", "france", "centre", "banlieue", "ensemble"]
+        },
+        { 
+            instruction: "Ми їмо в ресторані", 
+            answer: "nous mangeons au restaurant",
+            words: ["nous", "mangeons", "au", "restaurant", "café", "maison", "souvent", "bien"]
+        },
+        { 
+            instruction: "Ти граєш на піаніно", 
+            answer: "tu joues du piano",
+            words: ["tu", "joues", "du", "piano", "guitare", "violon", "bien", "souvent"]
+        },
+        { 
+            instruction: "Він працює в офісі", 
+            answer: "il travaille au bureau",
+            words: ["il", "travaille", "au", "bureau", "maison", "dur", "beaucoup", "tard"]
+        },
+        { 
+            instruction: "Вона любить танцювати", 
+            answer: "elle aime danser",
+            words: ["elle", "aime", "danser", "chanter", "beaucoup", "souvent", "bien", "ensemble"]
+        },
+        { 
+            instruction: "Ми дивимося телевізор", 
+            answer: "nous regardons la télévision",
+            words: ["nous", "regardons", "la", "télévision", "film", "souvent", "ensemble", "soir"]
+        },
+        { 
+            instruction: "Ви купуєте хліб", 
+            answer: "vous achetez du pain",
+            words: ["vous", "achetez", "du", "pain", "lait", "magasin", "matin", "frais"]
+        },
+        { 
+            instruction: "Вони слухають музику", 
+            answer: "ils écoutent de la musique",
+            words: ["ils", "écoutent", "de", "la", "musique", "radio", "souvent", "fort"]
+        },
+        { 
+            instruction: "Я читаю книгу", 
+            answer: "je lis un livre",
+            words: ["je", "lis", "un", "livre", "journal", "soir", "souvent", "intéressant"]
+        },
+        { 
+            instruction: "Ти пишеш листа", 
+            answer: "tu écris une lettre",
+            words: ["tu", "écris", "une", "lettre", "email", "souvent", "ami", "famille"]
+        },
+        { 
+            instruction: "Вона спить добре", 
+            answer: "elle dort bien",
+            words: ["elle", "dort", "bien", "mal", "beaucoup", "peu", "nuit", "lit"]
+        },
+        { 
+            instruction: "Ми чекаємо автобус", 
+            answer: "nous attendons l'autobus",
+            words: ["nous", "attendons", "l'autobus", "métro", "longtemps", "ensemble", "arrêt", "patiemment"]
+        },
+        { 
+            instruction: "Ви розумієте урок", 
+            answer: "vous comprenez la leçon",
+            words: ["vous", "comprenez", "la", "leçon", "bien", "mal", "tout", "difficile"]
+        },
+        { 
+            instruction: "Вони відповідають на питання", 
+            answer: "ils répondent aux questions",
+            words: ["ils", "répondent", "aux", "questions", "bien", "vite", "correctement", "toujours"]
+        },
+        { 
+            instruction: "Я беру каву", 
+            answer: "je prends un café",
+            words: ["je", "prends", "un", "café", "thé", "matin", "souvent", "chaud"]
+        },
+        { 
+            instruction: "Ти приходиш завтра", 
+            answer: "tu viens demain",
+            words: ["tu", "viens", "demain", "aujourd'hui", "souvent", "tôt", "tard", "sûrement"]
+        },
+        { 
+            instruction: "Вона виходить ввечері", 
+            answer: "elle sort ce soir",
+            words: ["elle", "sort", "ce", "soir", "souvent", "tard", "amis", "seule"]
+        },
+        { 
+            instruction: "Ми п'ємо воду", 
+            answer: "nous buvons de l'eau",
+            words: ["nous", "buvons", "de", "l'eau", "vin", "beaucoup", "souvent", "ensemble"]
+        },
+        { 
+            instruction: "Ви бачите фільм", 
+            answer: "vous voyez un film",
+            words: ["vous", "voyez", "un", "film", "spectacle", "souvent", "cinéma", "ensemble"]
+        },
+        { 
+            instruction: "Вони від'їжджають у відпустку", 
+            answer: "ils partent en vacances",
+            words: ["ils", "partent", "en", "vacances", "voyage", "demain", "ensemble", "loin"]
+        }
+    ],
+    intermediate: [
+        { 
+            instruction: "Ми читаємо цікаві книги", 
+            answer: "nous lisons des livres intéressants",
+            words: ["nous", "lisons", "des", "livres", "intéressants", "souvent", "beaucoup", "ensemble"]
+        },
+        { 
+            instruction: "Він пише листа своїй матері", 
+            answer: "il écrit une lettre à sa mère",
+            words: ["il", "écrit", "une", "lettre", "à", "sa", "mère", "souvent", "maintenant"]
+        },
+        { 
+            instruction: "Вони п'ють каву щоранку", 
+            answer: "ils boivent du café chaque matin",
+            words: ["ils", "boivent", "du", "café", "chaque", "matin", "ensemble", "toujours"]
+        },
+        { 
+            instruction: "Я розумію цю проблему", 
+            answer: "je comprends ce problème",
+            words: ["je", "comprends", "ce", "problème", "maintenant", "bien", "parfaitement", "mal"]
+        },
+        { 
+            instruction: "Вона спить вісім годин", 
+            answer: "elle dort huit heures",
+            words: ["elle", "dort", "huit", "heures", "chaque", "nuit", "bien", "mal"]
+        },
+        { 
+            instruction: "Ми чекаємо на друзів", 
+            answer: "nous attendons nos amis",
+            words: ["nous", "attendons", "nos", "amis", "longtemps", "patiemment", "dehors", "café"]
+        },
                 ]
             },
             context: {
