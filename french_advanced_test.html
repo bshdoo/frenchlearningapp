@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Французька академія - Інтерактивне навчання</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .app-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #4a5568;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #718096;
+            font-size: 1.1em;
+        }
+        
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #718096;
+            margin-top: 5px;
+        }
+        
+        .achievements {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .achievements h3 {
+            color: #4a5568;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .achievement-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .achievement {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement.unlocked {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .achievement.locked {
+            background: #e2e8f0;
+            color: #a0aec0;
+        }
+        
+        .exercise-selector {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .exercise-tabs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .tab:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .difficulty-selector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .difficulty-btn {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .difficulty-btn:hover {
+            border-color: #667eea;
+        }
+        
+        .difficulty-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .exercise-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .exercise {
+            display: none;
+        }
+        
+        .exercise.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .exercise h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .question:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .question.correct {
+            border-color: #48bb78;
+            background: #f0fff4;
+        }
+        
+        .question.incorrect {
+            border-color: #f56565;
+            background: #fff5f5;
+        }
+        
+        .question-number {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 0 5px;
+            width: 150px;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        select {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 0 5px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #667eea, #5a67d8);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #718096, #4a5568);
+        }
+        
+        .btn-success {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+        }
+        
+        .score-panel {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .score-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: rgba(255,255,255,0.8);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .word-option {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+        
+        .word-option:hover {
+            background: #cbd5e0;
+            transform: scale(1.05);
+        }
+        
+        .word-option.used {
+            background: #a0aec0;
+            color: #4a5568;
+            cursor: not-allowed;
+        }
+        
+        .sentence-display {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            min-height: 40px;
+            border: 2px dashed #cbd5e0;
+            margin: 15px 0;
+        }
+        
+        .hint {
+            background: #fef5e7;
+            border: 1px solid #f6e05e;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #744210;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+        }
+        
+        .notification.warning {
+            background: linear-gradient(45deg, #ed8936, #dd6b20);
+        }
+        
+        .streak-counter {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .streak-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #f56565;
+        }
+        
+        .conjugation-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .verb-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .verb-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .verb-forms {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🇫🇷 Французька Академія</h1>
+            <p class="subtitle">Інтерактивне вивчення дієслів для досягнення рівня B2</p>
+        </div>
+
+        <!-- Stats Panel -->
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-number" id="totalExercises">0</div>
+                <div class="stat-label">Вправ виконано</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalCorrect">0</div>
+                <div class="stat-label">Правильних відповідей</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="currentStreak">0</div>
+                <div class="stat-label">Поточна серія</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="userLevel">1</div>
+                <div class="stat-label">Рівень</div>
+            </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="achievements">
+            <h3>🏆 Досягнення</h3>
+            <div class="achievement-list" id="achievementsList">
+                <div class="achievement locked" data-achievement="first-correct">Перша правильна відповідь</div>
+                <div class="achievement locked" data-achievement="streak-5">Серія з 5 правильних</div>
+                <div class="achievement locked" data-achievement="streak-10">Серія з 10 правильних</div>
+                <div class="achievement locked" data-achievement="completed-10">10 вправ виконано</div>
+                <div class="achievement locked" data-achievement="completed-50">50 вправ виконано</div>
+                <div class="achievement locked" data-achievement="perfect-score">Ідеальний результат</div>
+                <div class="achievement locked" data-achievement="speed-demon">Швидкісний демон</div>
+                <div class="achievement locked" data-achievement="master">Майстер дієслів</div>
+            </div>
+        </div>
+
+        <!-- Exercise Selector -->
+        <div class="exercise-selector">
+            <div class="exercise-tabs">
+                <div class="tab active" data-exercise="conjugation">📚 Відмінювання</div>
+                <div class="tab" data-exercise="negation">❌ Заперечення</div>
+                <div class="tab" data-exercise="questions">❓ Питання</div>
+                <div class="tab" data-exercise="sentences">🔄 Складання речень</div>
+                <div class="tab" data-exercise="context">📖 Контекст</div>
+                <div class="tab" data-exercise="translation">🔄 Переклад</div>
+                <div class="tab" data-exercise="speed">⚡ Швидкість</div>
+            </div>
+            
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" data-difficulty="beginner">Початковий</button>
+                <button class="difficulty-btn" data-difficulty="intermediate">Середній</button>
+                <button class="difficulty-btn" data-difficulty="advanced">Просунутий</button>
+            </div>
+        </div>
+
+        <!-- Score Panel -->
+        <div class="score-panel">
+            <div class="score-number" id="scoreDisplay">0/0</div>
+            <div>Поточний результат</div>
+        </div>
+
+        <!-- Exercise Container -->
+        <div class="exercise-container">
+            <!-- Exercise 1: Conjugation -->
+            <div class="exercise active" id="conjugation">
+                <h2>📚 Відмінювання дієслів</h2>
+                <div class="hint">💡 Доповніть правильною формою дієслова</div>
+                
+                <div id="conjugationQuestions">
+                    <!-- Questions will be generated here -->
+                </div>
+            </div>
+
+            <!-- Exercise 2: Negation -->
+            <div class="exercise" id="negation">
+                <h2>❌ Заперечення (ne...pas)</h2>
+                <div class="hint">💡 Пам'ятайте: ne + дієслово + pas</div>
+                
+                <div id="negationQuestions">
+                    <!-- Questions will be generated here -->
+                </div>
+            </div>
+
+            <!-- Exercise 3: Questions -->
+            <div class="exercise" id="questions">
+                <h2>❓ Утворення питань</h2>
+                <div class="hint">💡 Використовуйте інверсію, Est-ce que або інтонацію</div>
+                
+                <div id="questionsQuestions">
+                    <!-- Questions will be generated here -->
+                </div>
+            </div>
+
+            <!-- Exercise 4: Sentences -->
+            <div class="exercise" id="sentences">
+                <h2>🔄 Складання речень</h2>
+                <div class="hint">💡 Натисніть на слова у правильному порядку</div>
+                
+                <div id="sentencesQuestions">
+                    <!-- Questions will be generated here -->
+                </div>
+            </div>
+
+            <!-- Exercise 5: Context -->
+            <div class="exercise" id="context">
+                <h2>📖 Дієслова в контексті</h2>
+                <div class="hint">💡 Виберіть правильне дієслово за змістом</div>
+                
+                <div id="contextQuestions">
+                    <!-- Questions will be generated here -->
+                </div>
+            </div>
+
+            <!-- Exercise 6: Translation -->
+            <div class="exercise" id="translation">
+                <h2>🔄 Переклад</h2>
+                <div class="hint">💡 Перекладіть речення з української на французьку</div>
+                
+                <div id="translationQuestions">
+                    <!-- Questions will be generated here -->
+                </div>
+            </div>
+
+            <!-- Exercise 7: Speed -->
+            <div class="exercise" id="speed">
+                <h2>⚡ Швидкісний раунд</h2>
+                <div class="hint">💡 Відповідайте якомога швидше! Час обмежений</div>
+                
+                <div id="speedQuestions">
+                    <!-- Questions will be generated here -->
+                </div>
+                <div id="speedTimer" style="text-align: center; font-size: 2em; color: #f56565; margin: 20px 0;"></div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button class="btn" id="checkBtn">Перевірити відповіді</button>
+                <button class="btn btn-secondary" id="newQuestionsBtn">Нові питання</button>
+                <button class="btn btn-secondary" id="resetBtn">Скинути</button>
+                <button class="btn btn-success" id="nextExerciseBtn">Наступна вправа</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Game state
+        let gameState = {
+            currentExercise: 'conjugation',
+            difficulty: 'beginner',
+            totalExercises: 0,
+            totalCorrect: 0,
+            currentStreak: 0,
+            bestStreak: 0,
+            userLevel: 1,
+            achievements: [],
+            currentQuestions: [],
+            userAnswers: {},
+            speedTimer: null,
+            speedTimeLeft: 0
+        };
+
+        // Exercise data pools - much larger sets for generating new questions
+        const exerciseData = {
+            conjugation: {
+                beginner: [
+                    { question: "Je ___ (être) étudiant", answer: "suis", verb: "être" },
+                    { question: "Tu ___ (avoir) 27 ans", answer: "as", verb: "avoir" },
+                    { question: "Il ___ (aller) à l'école", answer: "va", verb: "aller" },
+                    { question: "Nous ___ (faire) du sport", answer: "faisons", verb: "faire" },
+                    { question: "Vous ___ (pouvoir) parler", answer: "pouvez", verb: "pouvoir" },
+                    { question: "Ils ___ (vouloir) apprendre", answer: "veulent", verb: "vouloir" },
+                    { question: "Elle ___ (parler) français", answer: "parle", verb: "parler" },
+                    { question: "Nous ___ (finir) les devoirs", answer: "finissons", verb: "finir" },
+                    { question: "Je ___ (avoir) faim", answer: "ai", verb: "avoir" },
+                    { question: "Tu ___ (être) intelligent", answer: "es", verb: "être" },
+                    { question: "Elle ___ (aller) au travail", answer: "va", verb: "aller" },
+                    { question: "Vous ___ (faire) attention", answer: "faites", verb: "faire" },
+                    { question: "Ils ___ (pouvoir) venir", answer: "peuvent", verb: "pouvoir" },
+                    { question: "Je ___ (vouloir) dormir", answer: "veux", verb: "vouloir" },
+                    { question: "Tu ___ (parler) anglais", answer: "parles", verb: "parler" },
+                    { question: "Il ___ (finir) son travail", answer: "finit", verb: "finir" },
+                    { question: "Nous ___ (être) heureux", answer: "sommes", verb: "être" },
+                    { question: "Vous ___ (avoir) raison", answer: "avez", verb: "avoir" },
+                    { question: "Elles ___ (aller) en France", answer: "vont", verb: "aller" },
+                    { question: "Je ___ (faire) mes devoirs", answer: "fais", verb: "faire" },
+                    { question: "Tu ___ (pouvoir) m'aider", answer: "peux", verb: "pouvoir" },
+                    { question: "Elle ___ (vouloir) du thé", answer: "veut", verb: "vouloir" },
+                    { question: "Nous ___ (parler) ensemble", answer: "parlons", verb: "parler" },
+                    { question: "Ils ___ (finir) bientôt", answer: "finissent", verb: "finir" }
+                ],
+                intermediate: [
+                    { question: "Je ___ (prendre) le métro", answer: "prends", verb: "prendre" },
+                    { question: "Tu ___ (venir) avec nous?", answer: "viens", verb: "venir" },
+                    { question: "Il ___ (sortir) ce soir", answer: "sort", verb: "sortir" },
+                    { question: "Nous ___ (boire) du café", answer: "buvons", verb: "boire" },
+                    { question: "Vous ___ (voir) le film?", answer: "voyez", verb: "voir" },
+                    { question: "Elles ___ (partir) demain", answer: "partent", verb: "partir" },
+                    { question: "Je ___ (lire) un livre", answer: "lis", verb: "lire" },
+                    { question: "Tu ___ (écrire) une lettre", answer: "écris", verb: "écrire" },
+                    { question: "Elle ___ (dormir) bien", answer: "dort", verb: "dormir" },
+                    { question: "Nous ___ (offrir) un cadeau", answer: "offrons", verb: "offrir" },
+                    { question: "Vous ___ (mentir) souvent", answer: "mentez", verb: "mentir" },
+                    { question: "Ils ___ (courir) vite", answer: "courent", verb: "courir" },
+                    { question: "Je ___ (mettre) ma veste", answer: "mets", verb: "mettre" },
+                    { question: "Tu ___ (battre) le record", answer: "bats", verb: "battre" },
+                    { question: "Il ___ (connaître) Paris", answer: "connaît", verb: "connaître" },
+                    { question: "Nous ___ (suivre) le cours", answer: "suivons", verb: "suivre" },
+                    { question: "Vous ___ (vivre) en France", answer: "vivez", verb: "vivre" },
+                    { question: "Elles ___ (rire) beaucoup", answer: "rient", verb: "rire" }
+                ],
+                advanced: [
+                    { question: "Je ___ (s'asseoir) ici", answer: "m'assieds", verb: "s'asseoir" },
+                    { question: "Tu ___ (conduire) bien", answer: "conduis", verb: "conduire" },
+                    { question: "Il ___ (résoudre) le problème", answer: "résout", verb: "résoudre" },
+                    { question: "Nous ___ (recevoir) des lettres", answer: "recevons", verb: "recevoir" },
+                    { question: "Vous ___ (apercevoir) la montagne", answer: "apercevez", verb: "apercevoir" },
+                    { question: "Ils ___ (décevoir) leurs parents", answer: "déçoivent", verb: "décevoir" },
+                    { question: "Je ___ (craindre) le froid", answer: "crains", verb: "craindre" },
+                    { question: "Tu ___ (peindre) un tableau", answer: "peins", verb: "peindre" },
+                    { question: "Elle ___ (joindre) ses mains", answer: "joint", verb: "joindre" },
+                    { question: "Nous ___ (coudre) des vêtements", answer: "cousons", verb: "coudre" },
+                    { question: "Vous ___ (moudre) le café", answer: "moulez", verb: "moudre" },
+                    { question: "Ils ___ (absoudre) le péché", answer: "absolvent", verb: "absoudre" },
+                    { question: "Je ___ (se taire) maintenant", answer: "me tais", verb: "se taire" },
+                    { question: "Tu ___ (extraire) le jus", answer: "extrais", verb: "extraire" },
+                    { question: "Il ___ (construire) une maison", answer: "construit", verb: "construire" }
+                ]
+            },
+            negation: {
+                beginner: [
+                    { question: "Je ___ professeur", answer: "ne suis pas", positive: "Je suis professeur" },
+                    { question: "Tu ___ de voiture", answer: "n'as pas", positive: "Tu as une voiture" },
+                    { question: "Il ___ au cinéma", answer: "ne va pas", positive: "Il va au cinéma" },
+                    { question: "Nous ___ de sport", answer: "ne faisons pas", positive: "Nous faisons du sport" },
+                    { question: "Vous ___ français", answer: "ne parlez pas", positive: "Vous parlez français" },
+                    { question: "Elles ___ fatiguées", answer: "ne sont pas", positive: "Elles sont fatiguées" },
+                    { question: "Je ___ d'argent", answer: "n'ai pas", positive: "J'ai de l'argent" },
+                    { question: "Tu ___ en ville", answer: "ne vas pas", positive: "Tu vas en ville" },
+                    { question: "Il ___ ses devoirs", answer: "ne fait pas", positive: "Il fait ses devoirs" },
+                    { question: "Nous ___ vous aider", answer: "ne pouvons pas", positive: "Nous pouvons vous aider" },
+                    { question: "Vous ___ partir", answer: "ne voulez pas", positive: "Vous voulez partir" },
+                    { question: "Ils ___ bien", answer: "ne parlent pas", positive: "Ils parlent bien" },
+                    { question: "Elle ___ son travail", answer: "ne finit pas", positive: "Elle finit son travail" },
+                    { question: "Je ___ content", answer: "ne suis pas", positive: "Je suis content" },
+                    { question: "Tu ___ le temps", answer: "n'as pas", positive: "Tu as le temps" }
+                ],
+                intermediate: [
+                    { question: "Elle ___ le français", answer: "ne parle pas", positive: "Elle parle français" },
+                    { question: "Vous ___ venir", answer: "ne pouvez pas", positive: "Vous pouvez venir" },
+                    { question: "Ils ___ partir", answer: "ne veulent pas", positive: "Ils veulent partir" }
+                ],
+                advanced: [
+                    { question: "Je ___ rien", answer: "ne fais rien", positive: "Je fais quelque chose" },
+                    { question: "Il ___ personne", answer: "ne voit personne", positive: "Il voit quelqu'un" }
+                ]
+            },
+            questions: {
+                beginner: [
+                    { question: "___ professeur?", answer: "êtes-vous", statement: "Vous êtes professeur" },
+                    { question: "___ ce soir?", answer: "qu'est-ce que tu fais", statement: "Tu fais quelque chose ce soir" },
+                    { question: "___ en vacances?", answer: "où allez-vous", statement: "Vous allez quelque part en vacances" }
+                ],
+                intermediate: [
+                    { question: "___ parler français?", answer: "est-ce que tu peux", statement: "Tu peux parler français" },
+                    { question: "___ ce livre?", answer: "aimes-tu", statement: "Tu aimes ce livre" }
+                ],
+                advanced: [
+                    { question: "___ de temps étudiez-vous?", answer: "combien", statement: "Vous étudiez pendant un certain temps" },
+                    { question: "___ pensez-vous de ce film?", answer: "que", statement: "Vous pensez quelque chose de ce film" }
+                ]
+            },
+            sentences: {
+                beginner: [
+                    { 
+                        instruction: "Я хочу вивчити французьку", 
+                        answer: "je veux apprendre le français",
+                        words: ["je", "veux", "apprendre", "le", "français", "parler", "bien", "maintenant"]
+                    },
+                    { 
+                        instruction: "Ми можемо говорити французькою", 
+                        answer: "nous pouvons parler français",
+                        words: ["nous", "pouvons", "parler", "français", "bien", "maintenant", "ici", "toujours"]
+                    }
+                ],
+                intermediate: [
+                    { 
+                        instruction: "Вони йдуть до ресторану щовечора", 
+                        answer: "ils vont au restaurant tous les soirs",
+                        words: ["ils", "vont", "au", "restaurant", "tous", "les", "soirs", "matin", "souvent", "jamais"]
+                    }
+                ],
+                advanced: [
+                    { 
+                        instruction: "Якби я міг, я б подорожував світом", 
+                        answer: "si je pouvais je voyagerais dans le monde",
+                        words: ["si", "je", "pouvais", "voyagerais", "dans", "le", "monde", "serais", "ferais", "irais"]
+                    }
+                ]
+            },
+            context: {
+                beginner: [
+                    { question: "Marie ___ très intelligente", options: ["suis", "est", "êtes"], answer: "est", context: "(Марі дуже розумна)" },
+                    { question: "Nous ___ beaucoup de travail", options: ["avons", "sommes", "faisons"], answer: "avons", context: "(У нас багато роботи)" },
+                    { question: "Les étudiants ___ à l'université", options: ["vont", "font", "peuvent"], answer: "vont", context: "(Студенти йдуть до університету)" }
+                ],
+                intermediate: [
+                    { question: "Pierre ___ du café le matin", options: ["veut", "boit", "fait"], answer: "boit", context: "(П'єр п'є каву вранці)" },
+                    { question: "Elle ___ bien le piano", options: ["joue", "fait", "va"], answer: "joue", context: "(Вона добре грає на піаніно)" }
+                ],
+                advanced: [
+                    { question: "Il ___ ses erreurs", options: ["reconnaît", "fait", "va"], answer: "reconnaît", context: "(Він визнає свої помилки)" },
+                    { question: "Nous ___ ce problème", options: ["résolvons", "faisons", "avons"], answer: "résolvons", context: "(Ми вирішуємо цю проблему)" }
+                ]
+            },
+            translation: {
+                beginner: [
+                    { question: "Я студент", answer: "je suis étudiant" },
+                    { question: "Ти маєш машину", answer: "tu as une voiture" },
+                    { question: "Ми йдемо додому", answer: "nous allons à la maison" },
+                    { question: "Вони роблять домашнє завдання", answer: "ils font les devoirs" }
+                ],
+                intermediate: [
+                    { question: "Я вивчаю французьку мову три роки", answer: "j'étudie le français depuis trois ans" },
+                    { question: "Вона читає цікаву книгу", answer: "elle lit un livre intéressant" },
+                    { question: "Ми зустрічаємося з друзями щосуботи", answer: "nous rencontrons nos amis tous les samedis" }
+                ],
+                advanced: [
+                    { question: "Якби я знав французьку краще, я б переїхав до Франції", answer: "si je connaissais mieux le français je déménagerais en france" },
+                    { question: "Важливо, щоб ви розуміли цю концепцію", answer: "il est important que vous compreniez ce concept" }
+                ]
+            },
+            speed: {
+                beginner: [
+                    { question: "___ suis", answer: "je" },
+                    { question: "tu ___", answer: "es" },
+                    { question: "___ a", answer: "il" },
+                    { question: "nous ___", answer: "sommes" },
+                    { question: "___ avez", answer: "vous" },
+                    { question: "ils ___", answer: "sont" },
+                    { question: "___ ai", answer: "j" },
+                    { question: "elle ___", answer: "a" }
+                ],
+                intermediate: [
+                    { question: "___ vais", answer: "je" },
+                    { question: "tu ___", answer: "vas" },
+                    { question: "___ fait", answer: "il" },
+                    { question: "nous ___", answer: "faisons" },
+                    { question: "___ pouvez", answer: "vous" },
+                    { question: "elles ___", answer: "veulent" }
+                ],
+                advanced: [
+                    { question: "___ prends", answer: "je" },
+                    { question: "tu ___", answer: "viens" },
+                    { question: "___ sort", answer: "il" },
+                    { question: "nous ___", answer: "buvons" },
+                    { question: "___ voyez", answer: "vous" },
+                    { question: "ils ___", answer: "partent" }
+                ]
+            }
+        };
+
+        // Achievement definitions
+        const achievements = {
+            'first-correct': { name: 'Перша правильна відповідь', condition: () => gameState.totalCorrect >= 1 },
+            'streak-5': { name: 'Серія з 5 правильних', condition: () => gameState.currentStreak >= 5 },
+            'streak-10': { name: 'Серія з 10 правильних', condition: () => gameState.currentStreak >= 10 },
+            'completed-10': { name: '10 вправ виконано', condition: () => gameState.totalExercises >= 10 },
+            'completed-50': { name: '50 вправ виконано', condition: () => gameState.totalExercises >= 50 },
+            'perfect-score': { name: 'Ідеальний результат', condition: () => false }, // Will be set dynamically
+            'speed-demon': { name: 'Швидкісний демон', condition: () => false }, // Will be set dynamically
+            'master': { name: 'Майстер дієслів', condition: () => gameState.userLevel >= 10 }
+        };
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            loadGameState();
+            setupEventListeners();
+            generateQuestions();
+            updateUI();
+        });
+
+        function setupEventListeners() {
+            // Tab clicks
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    gameState.currentExercise = this.dataset.exercise;
+                    showExercise(this.dataset.exercise);
+                    generateQuestions();
+                });
+            });
+
+            // Difficulty buttons
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    gameState.difficulty = this.dataset.difficulty;
+                    document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    generateQuestions();
+                });
+            });
+
+            // Control buttons
+            document.getElementById('checkBtn').addEventListener('click', checkAnswers);
+            document.getElementById('newQuestionsBtn').addEventListener('click', generateQuestions);
+            document.getElementById('resetBtn').addEventListener('click', resetCurrentExercise);
+            document.getElementById('nextExerciseBtn').addEventListener('click', nextExercise);
+        }
+
+        function showExercise(exerciseId) {
+            // Hide all exercises
+            document.querySelectorAll('.exercise').forEach(ex => ex.classList.remove('active'));
+            
+            // Show selected exercise
+            document.getElementById(exerciseId).classList.add('active');
+            
+            // Update tabs
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`[data-exercise="${exerciseId}"]`).classList.add('active');
+            
+            resetCurrentExercise();
+        }
+
+        function generateQuestions() {
+            const exercise = gameState.currentExercise;
+            const difficulty = gameState.difficulty;
+            const data = exerciseData[exercise][difficulty];
+            
+            if (!data) return;
+
+            // Track used questions to avoid repetition
+            if (!gameState.usedQuestions) {
+                gameState.usedQuestions = {};
+            }
+            if (!gameState.usedQuestions[exercise]) {
+                gameState.usedQuestions[exercise] = {};
+            }
+            if (!gameState.usedQuestions[exercise][difficulty]) {
+                gameState.usedQuestions[exercise][difficulty] = [];
+            }
+
+            // Get unused questions
+            const usedQuestions = gameState.usedQuestions[exercise][difficulty];
+            const availableQuestions = data.filter((_, index) => !usedQuestions.includes(index));
+            
+            // If all questions have been used, reset the pool
+            if (availableQuestions.length < 4) {
+                gameState.usedQuestions[exercise][difficulty] = [];
+                const resetQuestions = data.filter((_, index) => !gameState.usedQuestions[exercise][difficulty].includes(index));
+                gameState.currentQuestions = resetQuestions.slice(0, Math.min(6, data.length));
+            } else {
+                // Select new questions
+                const shuffled = [...availableQuestions].sort(() => Math.random() - 0.5);
+                gameState.currentQuestions = shuffled.slice(0, Math.min(6, availableQuestions.length));
+            }
+            
+            // Mark selected questions as used
+            gameState.currentQuestions.forEach(question => {
+                const originalIndex = data.indexOf(question);
+                if (originalIndex !== -1 && !usedQuestions.includes(originalIndex)) {
+                    usedQuestions.push(originalIndex);
+                }
+            });
+            
+            const container = document.getElementById(exercise + 'Questions');
+            container.innerHTML = '';
+            
+            gameState.currentQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = generateQuestionHTML(q, index, exercise);
+                container.appendChild(questionDiv);
+            });
+
+            // Setup sentence building if needed
+            if (exercise === 'sentences') {
+                setupSentenceBuilding();
+            }
+
+            // Setup speed timer if needed
+            if (exercise === 'speed') {
+                setupSpeedTimer();
+            }
+
+            resetCurrentExercise();
+        }
+
+        function generateQuestionHTML(question, index, exerciseType) {
+            const questionNumber = `<div class="question-number">${index + 1}</div>`;
+            let html = questionNumber;
+
+            switch (exerciseType) {
+                case 'conjugation':
+                    html += `
+                        ${question.question.replace('___', `<input type="text" id="q${index}" data-answer="${question.answer}" placeholder="...">`)}
+                        <div class="result">Правильна відповідь: ${question.answer}</div>
+                    `;
+                    break;
+
+                case 'negation':
+                    html += `
+                        ${question.question.replace('___', `<input type="text" id="q${index}" data-answer="${question.answer}" placeholder="..." style="width: 200px;">`)}
+                        <div class="result">Правильна відповідь: ${question.answer}</div>
+                    `;
+                    break;
+
+                case 'questions':
+                    html += `
+                        ${question.question.replace('___', `<input type="text" id="q${index}" data-answer="${question.answer}" placeholder="..." style="width: 200px;">`)}
+                        <div class="result">Правильна відповідь: ${question.answer}</div>
+                    `;
+                    break;
+
+                case 'sentences':
+                    html += `
+                        <p><strong>Складіть речення:</strong> "${question.instruction}"</p>
+                        <div class="sentence-builder">
+                            ${question.words.map(word => `<span class="word-option" data-word="${word}">${word}</span>`).join('')}
+                        </div>
+                        <div class="sentence-display" id="sentence${index}"></div>
+                        <button type="button" class="btn btn-secondary" onclick="clearSentence(${index})">Очистити</button>
+                        <div class="result">Правильна відповідь: ${question.answer}</div>
+                    `;
+                    break;
+
+                case 'context':
+                    const options = question.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
+                    html += `
+                        ${question.question.replace('___', `<select id="q${index}" data-answer="${question.answer}"><option value="">Виберіть...</option>${options}</select>`)} ${question.context}
+                        <div class="result">Правильна відповідь: ${question.answer}</div>
+                    `;
+                    break;
+
+                case 'translation':
+                    html += `
+                        <strong>Перекладіть:</strong> "${question.question}"<br>
+                        <input type="text" id="q${index}" data-answer="${question.answer}" placeholder="Ваш переклад..." style="width: 300px; margin-top: 10px;">
+                        <div class="result">Правильна відповідь: ${question.answer}</div>
+                    `;
+                    break;
+
+                case 'speed':
+                    html += `
+                        ${question.question.replace('___', `<input type="text" id="q${index}" data-answer="${question.answer}" placeholder="..." style="width: 100px;">`)}
+                        <div class="result">Правильна відповідь: ${question.answer}</div>
+                    `;
+                    break;
+            }
+
+            return html;
+        }
+
+        function setupSentenceBuilding() {
+            gameState.sentenceBuilders = {};
+            
+            document.querySelectorAll('.word-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    if (this.classList.contains('used')) return;
+                    
+                    const word = this.dataset.word;
+                    const questionDiv = this.closest('.question');
+                    const questionIndex = Array.from(questionDiv.parentNode.children).indexOf(questionDiv);
+                    const sentenceId = `sentence${questionIndex}`;
+                    
+                    if (!gameState.sentenceBuilders[sentenceId]) {
+                        gameState.sentenceBuilders[sentenceId] = [];
+                    }
+                    
+                    gameState.sentenceBuilders[sentenceId].push(word);
+                    this.classList.add('used');
+                    
+                    updateSentenceDisplay(sentenceId, questionIndex);
+                });
+            });
+        }
+
+        function updateSentenceDisplay(sentenceId, questionIndex) {
+            const display = document.getElementById(sentenceId);
+            if (display && gameState.sentenceBuilders[sentenceId]) {
+                display.textContent = gameState.sentenceBuilders[sentenceId].join(' ');
+            }
+        }
+
+        function clearSentence(questionIndex) {
+            const sentenceId = `sentence${questionIndex}`;
+            gameState.sentenceBuilders[sentenceId] = [];
+            updateSentenceDisplay(sentenceId, questionIndex);
+            
+            const questionDiv = document.querySelectorAll('.question')[questionIndex];
+            questionDiv.querySelectorAll('.word-option').forEach(option => {
+                option.classList.remove('used');
+            });
+        }
+
+        function setupSpeedTimer() {
+            gameState.speedTimeLeft = 30;
+            const timerDisplay = document.getElementById('speedTimer');
+            
+            if (gameState.speedTimer) {
+                clearInterval(gameState.speedTimer);
+            }
+            
+            gameState.speedTimer = setInterval(() => {
+                gameState.speedTimeLeft--;
+                timerDisplay.textContent = `⏱️ ${gameState.speedTimeLeft}s`;
+                
+                if (gameState.speedTimeLeft <= 0) {
+                    clearInterval(gameState.speedTimer);
+                    timerDisplay.textContent = "⏱️ Час вийшов!";
+                    checkAnswers();
+                }
+            }, 1000);
+            
+            timerDisplay.textContent = `⏱️ ${gameState.speedTimeLeft}s`;
+        }
+
+        function checkAnswers() {
+            let correctCount = 0;
+            const totalQuestions = gameState.currentQuestions.length;
+            
+            gameState.currentQuestions.forEach((q, index) => {
+                let userAnswer = '';
+                let correctAnswer = q.answer;
+                const questionDiv = document.querySelectorAll('.question')[index];
+                
+                if (gameState.currentExercise === 'sentences') {
+                    const sentenceId = `sentence${index}`;
+                    userAnswer = gameState.sentenceBuilders[sentenceId] ? gameState.sentenceBuilders[sentenceId].join(' ') : '';
+                } else {
+                    const input = document.getElementById(`q${index}`);
+                    userAnswer = input.value || input.selectedOptions?.[0]?.value || '';
+                }
+                
+                const isCorrect = normalizeAnswer(userAnswer) === normalizeAnswer(correctAnswer);
+                
+                if (isCorrect) {
+                    correctCount++;
+                    questionDiv.classList.add('correct');
+                    questionDiv.classList.remove('incorrect');
+                } else {
+                    questionDiv.classList.add('incorrect');
+                    questionDiv.classList.remove('correct');
+                    questionDiv.querySelector('.result').style.display = 'block';
+                }
+            });
+            
+            updateGameState(correctCount, totalQuestions);
+            updateUI();
+            checkAchievements();
+            
+            if (gameState.speedTimer) {
+                clearInterval(gameState.speedTimer);
+            }
+        }
+
+        function updateGameState(correctCount, totalQuestions) {
+            gameState.totalExercises++;
+            gameState.totalCorrect += correctCount;
+            
+            if (correctCount === totalQuestions) {
+                gameState.currentStreak++;
+                if (gameState.currentStreak > gameState.bestStreak) {
+                    gameState.bestStreak = gameState.currentStreak;
+                }
+            } else {
+                gameState.currentStreak = 0;
+            }
+            
+            // Level up logic
+            const requiredPoints = gameState.userLevel * 10;
+            if (gameState.totalCorrect >= requiredPoints) {
+                gameState.userLevel++;
+                showNotification(`Рівень підвищено! Тепер ви ${gameState.userLevel} рівня! 🎉`, 'success');
+            }
+            
+            saveGameState();
+        }
+
+        function checkAchievements() {
+            Object.keys(achievements).forEach(key => {
+                if (!gameState.achievements.includes(key)) {
+                    if (achievements[key].condition()) {
+                        gameState.achievements.push(key);
+                        unlockAchievement(key);
+                    }
+                }
+            });
+            
+            // Check for perfect score
+            const currentScore = document.getElementById('scoreDisplay').textContent;
+            if (currentScore.includes('100%') || currentScore.split('/')[0] === currentScore.split('/')[1]) {
+                if (!gameState.achievements.includes('perfect-score')) {
+                    gameState.achievements.push('perfect-score');
+                    unlockAchievement('perfect-score');
+                }
+            }
+            
+            // Check for speed demon (completing speed exercise in under 15 seconds)
+            if (gameState.currentExercise === 'speed' && gameState.speedTimeLeft > 15) {
+                if (!gameState.achievements.includes('speed-demon')) {
+                    gameState.achievements.push('speed-demon');
+                    unlockAchievement('speed-demon');
+                }
+            }
+            
+            updateAchievementsDisplay();
+        }
+
+        function unlockAchievement(achievementKey) {
+            showNotification(`🏆 Досягнення розблоковано: ${achievements[achievementKey].name}!`, 'success');
+        }
+
+        function updateAchievementsDisplay() {
+            document.querySelectorAll('.achievement').forEach(achievement => {
+                const key = achievement.dataset.achievement;
+                if (gameState.achievements.includes(key)) {
+                    achievement.classList.remove('locked');
+                    achievement.classList.add('unlocked');
+                }
+            });
+        }
+
+        function normalizeAnswer(answer) {
+            return answer.toLowerCase().trim().replace(/['']/g, "'").replace(/\s+/g, ' ');
+        }
+
+        function resetCurrentExercise() {
+            // Reset all question states
+            document.querySelectorAll('.question').forEach(question => {
+                question.classList.remove('correct', 'incorrect');
+                const result = question.querySelector('.result');
+                if (result) result.style.display = 'none';
+            });
+            
+            // Reset inputs
+            document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
+            document.querySelectorAll('select').forEach(select => select.value = '');
+            
+            // Reset sentence builders
+            if (gameState.currentExercise === 'sentences') {
+                gameState.sentenceBuilders = {};
+                document.querySelectorAll('.word-option').forEach(option => {
+                    option.classList.remove('used');
+                });
+                document.querySelectorAll('.sentence-display').forEach(display => {
+                    display.textContent = '';
+                });
+            }
+            
+            // Reset speed timer
+            if (gameState.currentExercise === 'speed') {
+                if (gameState.speedTimer) {
+                    clearInterval(gameState.speedTimer);
+                }
+                document.getElementById('speedTimer').textContent = '';
+            }
+            
+            updateScoreDisplay(0, gameState.currentQuestions.length);
+        }
+
+        function nextExercise() {
+            const exercises = ['conjugation', 'negation', 'questions', 'sentences', 'context', 'translation', 'speed'];
+            const currentIndex = exercises.indexOf(gameState.currentExercise);
+            const nextIndex = (currentIndex + 1) % exercises.length;
+            
+            gameState.currentExercise = exercises[nextIndex];
+            showExercise(exercises[nextIndex]);
+            generateQuestions();
+        }
+
+        function updateUI() {
+            // Update stats
+            document.getElementById('totalExercises').textContent = gameState.totalExercises;
+            document.getElementById('totalCorrect').textContent = gameState.totalCorrect;
+            document.getElementById('currentStreak').textContent = gameState.currentStreak;
+            document.getElementById('userLevel').textContent = gameState.userLevel;
+            
+            updateAchievementsDisplay();
+        }
+
+        function updateScoreDisplay(correct, total) {
+            const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+            document.getElementById('scoreDisplay').textContent = `${correct}/${total} (${percentage}%)`;
+        }
+
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function saveGameState() {
+            try {
+                localStorage.setItem('frenchLearningState', JSON.stringify(gameState));
+            } catch (e) {
+                // localStorage not available, continue without saving
+            }
+        }
+
+        function loadGameState() {
+            try {
+                const saved = localStorage.getItem('frenchLearningState');
+                if (saved) {
+                    const parsedState = JSON.parse(saved);
+                    gameState = { ...gameState, ...parsedState };
+                }
+            } catch (e) {
+                // localStorage not available or corrupted, use default state
+            }
+        }
+
+        // Global functions for sentence building
+        window.clearSentence = clearSentence;
+    </script>
+</body>
+</html>
