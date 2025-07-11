@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -39,11 +38,6 @@
             margin-bottom: 10px;
         }
         
-        .header .subtitle {
-            color: #718096;
-            font-size: 1.1em;
-        }
-        
         .stats-panel {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -57,11 +51,6 @@
             border-radius: 10px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
         }
         
         .stat-number {
@@ -83,14 +72,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .achievements h3 {
-            color: #4a5568;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
         .achievement-list {
             display: flex;
             gap: 10px;
@@ -102,13 +83,11 @@
             border-radius: 20px;
             font-size: 14px;
             font-weight: bold;
-            transition: all 0.3s ease;
         }
         
         .achievement.unlocked {
             background: linear-gradient(45deg, #48bb78, #38a169);
             color: white;
-            transform: scale(1.05);
         }
         
         .achievement.locked {
@@ -137,25 +116,18 @@
             border: 2px solid #e2e8f0;
             border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-align: center;
             font-weight: bold;
-        }
-        
-        .tab:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
+            transition: all 0.3s ease;
         }
         
         .tab.active {
             background: #667eea;
             color: white;
-            border-color: #667eea;
         }
         
         .difficulty-selector {
             text-align: center;
-            margin-bottom: 20px;
         }
         
         .difficulty-btn {
@@ -165,17 +137,11 @@
             background: white;
             border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .difficulty-btn:hover {
-            border-color: #667eea;
         }
         
         .difficulty-btn.active {
             background: #667eea;
             color: white;
-            border-color: #667eea;
         }
         
         .exercise-container {
@@ -191,21 +157,12 @@
         
         .exercise.active {
             display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         .exercise h2 {
             color: #667eea;
             margin-bottom: 20px;
             font-size: 1.8em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
         
         .question {
@@ -214,13 +171,6 @@
             background: #f8f9fa;
             border-radius: 10px;
             border: 2px solid #e2e8f0;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .question:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
         }
         
         .question.correct {
@@ -233,18 +183,6 @@
             background: #fff5f5;
         }
         
-        .question-number {
-            position: absolute;
-            top: -10px;
-            left: 15px;
-            background: #667eea;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
         input[type="text"] {
             border: 2px solid #e2e8f0;
             border-radius: 8px;
@@ -252,13 +190,6 @@
             font-size: 16px;
             margin: 0 5px;
             width: 150px;
-            transition: all 0.3s ease;
-        }
-        
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
         select {
@@ -268,38 +199,30 @@
             font-size: 16px;
             margin: 0 5px;
             background: white;
-            transition: all 0.3s ease;
-        }
-        
-        select:focus {
-            outline: none;
-            border-color: #667eea;
         }
         
         .btn {
-            background: linear-gradient(45deg, #667eea, #5a67d8);
+            background: #667eea;
             color: white;
             border: none;
             padding: 12px 25px;
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
             margin: 10px 5px;
             font-weight: bold;
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            background: #5a67d8;
         }
         
         .btn-secondary {
-            background: linear-gradient(45deg, #718096, #4a5568);
+            background: #718096;
         }
         
         .btn-success {
-            background: linear-gradient(45deg, #48bb78, #38a169);
+            background: #48bb78;
         }
         
         .result {
@@ -309,7 +232,6 @@
             font-weight: bold;
             display: none;
             background: #ebf8ff;
-            border-left: 4px solid #4299e1;
         }
         
         .score-panel {
@@ -319,32 +241,11 @@
             border-radius: 10px;
             text-align: center;
             margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .score-number {
             font-size: 2.5em;
             font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .progress-container {
-            margin: 20px 0;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: rgba(255,255,255,0.8);
-            transition: width 0.5s ease;
-            border-radius: 10px;
         }
         
         .word-option {
@@ -355,17 +256,10 @@
             border-radius: 20px;
             cursor: pointer;
             user-select: none;
-            transition: all 0.3s ease;
-        }
-        
-        .word-option:hover {
-            background: #cbd5e0;
-            transform: scale(1.05);
         }
         
         .word-option.used {
             background: #a0aec0;
-            color: #4a5568;
             cursor: not-allowed;
         }
         
@@ -419,45 +313,12 @@
             background: linear-gradient(45deg, #ed8936, #dd6b20);
         }
         
-        .streak-counter {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .streak-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #f56565;
-        }
-        
-        .conjugation-table {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .verb-card {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px solid #e2e8f0;
-        }
-        
-        .verb-title {
-            font-weight: bold;
-            color: #667eea;
+        .review-info {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
             margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .verb-forms {
-            font-size: 14px;
-            line-height: 1.6;
+            border-left: 4px solid #ffc107;
         }
     </style>
 </head>
@@ -466,7 +327,7 @@
         <!-- Header -->
         <div class="header">
             <h1>🇫🇷 Французька Академія</h1>
-            <p class="subtitle">Інтерактивне вивчення дієслів для досягнення рівня B2</p>
+            <p>Інтерактивне вивчення дієслів для досягнення рівня B2</p>
         </div>
 
         <!-- Stats Panel -->
@@ -492,15 +353,12 @@
         <!-- Achievements -->
         <div class="achievements">
             <h3>🏆 Досягнення</h3>
-            <div class="achievement-list" id="achievementsList">
+            <div class="achievement-list">
                 <div class="achievement locked" data-achievement="first-correct">Перша правильна відповідь</div>
                 <div class="achievement locked" data-achievement="streak-5">Серія з 5 правильних</div>
                 <div class="achievement locked" data-achievement="streak-10">Серія з 10 правильних</div>
                 <div class="achievement locked" data-achievement="completed-10">10 вправ виконано</div>
-                <div class="achievement locked" data-achievement="completed-50">50 вправ виконано</div>
                 <div class="achievement locked" data-achievement="perfect-score">Ідеальний результат</div>
-                <div class="achievement locked" data-achievement="speed-demon">Швидкісний демон</div>
-                <div class="achievement locked" data-achievement="master">Майстер дієслів</div>
             </div>
         </div>
 
@@ -512,8 +370,8 @@
                 <div class="tab" data-exercise="questions">❓ Питання</div>
                 <div class="tab" data-exercise="sentences">🔄 Складання речень</div>
                 <div class="tab" data-exercise="context">📖 Контекст</div>
-                <div class="tab" data-exercise="translation">🔄 Переклад</div>
                 <div class="tab" data-exercise="speed">⚡ Швидкість</div>
+                <div class="tab" data-exercise="review" id="reviewTab" style="display: none;">🔄 Повторення помилок</div>
             </div>
             
             <div class="difficulty-selector">
@@ -535,71 +393,55 @@
             <div class="exercise active" id="conjugation">
                 <h2>📚 Відмінювання дієслів</h2>
                 <div class="hint">💡 Доповніть правильною формою дієслова</div>
-                
-                <div id="conjugationQuestions">
-                    <!-- Questions will be generated here -->
-                </div>
+                <div id="conjugationQuestions"></div>
             </div>
 
             <!-- Exercise 2: Negation -->
             <div class="exercise" id="negation">
                 <h2>❌ Заперечення (ne...pas)</h2>
                 <div class="hint">💡 Пам'ятайте: ne + дієслово + pas</div>
-                
-                <div id="negationQuestions">
-                    <!-- Questions will be generated here -->
-                </div>
+                <div id="negationQuestions"></div>
             </div>
 
             <!-- Exercise 3: Questions -->
             <div class="exercise" id="questions">
                 <h2>❓ Утворення питань</h2>
                 <div class="hint">💡 Використовуйте інверсію, Est-ce que або інтонацію</div>
-                
-                <div id="questionsQuestions">
-                    <!-- Questions will be generated here -->
-                </div>
+                <div id="questionsQuestions"></div>
             </div>
 
             <!-- Exercise 4: Sentences -->
             <div class="exercise" id="sentences">
                 <h2>🔄 Складання речень</h2>
                 <div class="hint">💡 Натисніть на слова у правильному порядку</div>
-                
-                <div id="sentencesQuestions">
-                    <!-- Questions will be generated here -->
-                </div>
+                <div id="sentencesQuestions"></div>
             </div>
 
             <!-- Exercise 5: Context -->
             <div class="exercise" id="context">
                 <h2>📖 Дієслова в контексті</h2>
                 <div class="hint">💡 Виберіть правильне дієслово за змістом</div>
-                
-                <div id="contextQuestions">
-                    <!-- Questions will be generated here -->
-                </div>
+                <div id="contextQuestions"></div>
             </div>
 
-            <!-- Exercise 6: Translation -->
-            <div class="exercise" id="translation">
-                <h2>🔄 Переклад</h2>
-                <div class="hint">💡 Перекладіть речення з української на французьку</div>
-                
-                <div id="translationQuestions">
-                    <!-- Questions will be generated here -->
-                </div>
-            </div>
-
-            <!-- Exercise 7: Speed -->
+            <!-- Exercise 6: Speed -->
             <div class="exercise" id="speed">
                 <h2>⚡ Швидкісний раунд</h2>
                 <div class="hint">💡 Відповідайте якомога швидше! Час обмежений</div>
-                
-                <div id="speedQuestions">
-                    <!-- Questions will be generated here -->
-                </div>
+                <div id="speedQuestions"></div>
                 <div id="speedTimer" style="text-align: center; font-size: 2em; color: #f56565; margin: 20px 0;"></div>
+            </div>
+
+            <!-- Exercise 7: Review -->
+            <div class="exercise" id="review">
+                <h2>🔄 Повторення помилок</h2>
+                <div class="hint">💡 Повторіть питання, на які ви помилялися раніше</div>
+                <div id="reviewQuestions">
+                    <div style="text-align: center; padding: 40px;">
+                        <p style="font-size: 1.2em; color: #667eea;">📚 Тут з'являться питання, на які ви помилялися</p>
+                        <p style="color: #718096;">Спочатку пройдіть інші вправи, щоб накопичити помилки для повторення</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Controls -->
@@ -612,7 +454,6 @@
         </div>
     </div>
 
-    <!-- Notification -->
     <div class="notification" id="notification"></div>
 
     <script>
@@ -623,123 +464,310 @@
             totalExercises: 0,
             totalCorrect: 0,
             currentStreak: 0,
-            bestStreak: 0,
             userLevel: 1,
             achievements: [],
             currentQuestions: [],
-            userAnswers: {},
             speedTimer: null,
-            speedTimeLeft: 0
+            speedTimeLeft: 0,
+            mistakeQuestions: [],
+            sentenceBuilders: {},
+            usedQuestions: {}
         };
 
-        // Exercise data pools - much larger sets for generating new questions
+        // Exercise data
         const exerciseData = {
             conjugation: {
                 beginner: [
-                    { question: "Je ___ (être) étudiant", answer: "suis", verb: "être" },
-                    { question: "Tu ___ (avoir) 27 ans", answer: "as", verb: "avoir" },
-                    { question: "Il ___ (aller) à l'école", answer: "va", verb: "aller" },
-                    { question: "Nous ___ (faire) du sport", answer: "faisons", verb: "faire" },
-                    { question: "Vous ___ (pouvoir) parler", answer: "pouvez", verb: "pouvoir" },
-                    { question: "Ils ___ (vouloir) apprendre", answer: "veulent", verb: "vouloir" },
-                    { question: "Elle ___ (parler) français", answer: "parle", verb: "parler" },
-                    { question: "Nous ___ (finir) les devoirs", answer: "finissons", verb: "finir" },
-                    { question: "Je ___ (avoir) faim", answer: "ai", verb: "avoir" },
-                    { question: "Tu ___ (être) intelligent", answer: "es", verb: "être" },
-                    { question: "Elle ___ (aller) au travail", answer: "va", verb: "aller" },
-                    { question: "Vous ___ (faire) attention", answer: "faites", verb: "faire" },
-                    { question: "Ils ___ (pouvoir) venir", answer: "peuvent", verb: "pouvoir" },
-                    { question: "Je ___ (vouloir) dormir", answer: "veux", verb: "vouloir" },
-                    { question: "Tu ___ (parler) anglais", answer: "parles", verb: "parler" },
-                    { question: "Il ___ (finir) son travail", answer: "finit", verb: "finir" },
-                    { question: "Nous ___ (être) heureux", answer: "sommes", verb: "être" },
-                    { question: "Vous ___ (avoir) raison", answer: "avez", verb: "avoir" },
-                    { question: "Elles ___ (aller) en France", answer: "vont", verb: "aller" },
-                    { question: "Je ___ (faire) mes devoirs", answer: "fais", verb: "faire" },
-                    { question: "Tu ___ (pouvoir) m'aider", answer: "peux", verb: "pouvoir" },
-                    { question: "Elle ___ (vouloir) du thé", answer: "veut", verb: "vouloir" },
-                    { question: "Nous ___ (parler) ensemble", answer: "parlons", verb: "parler" },
-                    { question: "Ils ___ (finir) bientôt", answer: "finissent", verb: "finir" }
+                    { question: "Je ___ (être) étudiant", answer: "suis" },
+                    { question: "Tu ___ (avoir) 27 ans", answer: "as" },
+                    { question: "Il ___ (aller) à l'école", answer: "va" },
+                    { question: "Nous ___ (faire) du sport", answer: "faisons" },
+                    { question: "Vous ___ (pouvoir) parler", answer: "pouvez" },
+                    { question: "Ils ___ (vouloir) apprendre", answer: "veulent" },
+                    { question: "Elle ___ (parler) français", answer: "parle" },
+                    { question: "Nous ___ (finir) les devoirs", answer: "finissons" },
+                    { question: "Je ___ (avoir) faim", answer: "ai" },
+                    { question: "Tu ___ (être) intelligent", answer: "es" },
+                    { question: "Elle ___ (aller) au travail", answer: "va" },
+                    { question: "Vous ___ (faire) attention", answer: "faites" },
+                    { question: "Ils ___ (pouvoir) venir", answer: "peuvent" },
+                    { question: "Je ___ (vouloir) dormir", answer: "veux" },
+                    { question: "Tu ___ (parler) anglais", answer: "parles" },
+                    { question: "Il ___ (finir) son travail", answer: "finit" },
+                    { question: "Nous ___ (être) heureux", answer: "sommes" },
+                    { question: "Vous ___ (avoir) raison", answer: "avez" },
+                    { question: "Elles ___ (aller) en France", answer: "vont" },
+                    { question: "Je ___ (faire) mes devoirs", answer: "fais" },
+                    { question: "Tu ___ (pouvoir) m'aider", answer: "peux" },
+                    { question: "Elle ___ (vouloir) du thé", answer: "veut" },
+                    { question: "Nous ___ (parler) ensemble", answer: "parlons" },
+                    { question: "Ils ___ (finir) bientôt", answer: "finissent" },
+                    { question: "Je ___ (être) médecin", answer: "suis" },
+                    { question: "Tu ___ (avoir) une sœur", answer: "as" },
+                    { question: "Il ___ (aller) chez lui", answer: "va" },
+                    { question: "Nous ___ (faire) la cuisine", answer: "faisons" },
+                    { question: "Vous ___ (pouvoir) comprendre", answer: "pouvez" },
+                    { question: "Elles ___ (vouloir) voyager", answer: "veulent" }
                 ],
                 intermediate: [
-                    { question: "Je ___ (prendre) le métro", answer: "prends", verb: "prendre" },
-                    { question: "Tu ___ (venir) avec nous?", answer: "viens", verb: "venir" },
-                    { question: "Il ___ (sortir) ce soir", answer: "sort", verb: "sortir" },
-                    { question: "Nous ___ (boire) du café", answer: "buvons", verb: "boire" },
-                    { question: "Vous ___ (voir) le film?", answer: "voyez", verb: "voir" },
-                    { question: "Elles ___ (partir) demain", answer: "partent", verb: "partir" },
-                    { question: "Je ___ (lire) un livre", answer: "lis", verb: "lire" },
-                    { question: "Tu ___ (écrire) une lettre", answer: "écris", verb: "écrire" },
-                    { question: "Elle ___ (dormir) bien", answer: "dort", verb: "dormir" },
-                    { question: "Nous ___ (offrir) un cadeau", answer: "offrons", verb: "offrir" },
-                    { question: "Vous ___ (mentir) souvent", answer: "mentez", verb: "mentir" },
-                    { question: "Ils ___ (courir) vite", answer: "courent", verb: "courir" },
-                    { question: "Je ___ (mettre) ma veste", answer: "mets", verb: "mettre" },
-                    { question: "Tu ___ (battre) le record", answer: "bats", verb: "battre" },
-                    { question: "Il ___ (connaître) Paris", answer: "connaît", verb: "connaître" },
-                    { question: "Nous ___ (suivre) le cours", answer: "suivons", verb: "suivre" },
-                    { question: "Vous ___ (vivre) en France", answer: "vivez", verb: "vivre" },
-                    { question: "Elles ___ (rire) beaucoup", answer: "rient", verb: "rire" }
+                    { question: "Je ___ (prendre) le métro", answer: "prends" },
+                    { question: "Tu ___ (venir) avec nous?", answer: "viens" },
+                    { question: "Il ___ (sortir) ce soir", answer: "sort" },
+                    { question: "Nous ___ (boire) du café", answer: "buvons" },
+                    { question: "Vous ___ (voir) le film?", answer: "voyez" },
+                    { question: "Elles ___ (partir) demain", answer: "partent" },
+                    { question: "Je ___ (lire) un livre", answer: "lis" },
+                    { question: "Tu ___ (écrire) une lettre", answer: "écris" },
+                    { question: "Elle ___ (dormir) bien", answer: "dort" },
+                    { question: "Nous ___ (offrir) un cadeau", answer: "offrons" },
+                    { question: "Vous ___ (mentir) souvent", answer: "mentez" },
+                    { question: "Ils ___ (courir) vite", answer: "courent" },
+                    { question: "Je ___ (mettre) ma veste", answer: "mets" },
+                    { question: "Tu ___ (battre) le record", answer: "bats" },
+                    { question: "Il ___ (connaître) Paris", answer: "connaît" },
+                    { question: "Nous ___ (suivre) le cours", answer: "suivons" },
+                    { question: "Vous ___ (vivre) en France", answer: "vivez" },
+                    { question: "Elles ___ (rire) beaucoup", answer: "rient" },
+                    { question: "Je ___ (comprendre) tout", answer: "comprends" },
+                    { question: "Tu ___ (attendre) l'autobus", answer: "attends" },
+                    { question: "Il ___ (descendre) les escaliers", answer: "descend" },
+                    { question: "Nous ___ (répondre) aux questions", answer: "répondons" },
+                    { question: "Vous ___ (vendre) votre maison", answer: "vendez" },
+                    { question: "Ils ___ (entendre) du bruit", answer: "entendent" },
+                    { question: "Je ___ (perdre) mes clés", answer: "perds" },
+                    { question: "Tu ___ (rendre) visite", answer: "rends" },
+                    { question: "Elle ___ (tendre) la main", answer: "tend" },
+                    { question: "Nous ___ (défendre) nos idées", answer: "défendons" },
+                    { question: "Vous ___ (apprendre) le français", answer: "apprenez" },
+                    { question: "Ils ___ (surprendre) tout le monde", answer: "surprennent" }
                 ],
                 advanced: [
-                    { question: "Je ___ (s'asseoir) ici", answer: "m'assieds", verb: "s'asseoir" },
-                    { question: "Tu ___ (conduire) bien", answer: "conduis", verb: "conduire" },
-                    { question: "Il ___ (résoudre) le problème", answer: "résout", verb: "résoudre" },
-                    { question: "Nous ___ (recevoir) des lettres", answer: "recevons", verb: "recevoir" },
-                    { question: "Vous ___ (apercevoir) la montagne", answer: "apercevez", verb: "apercevoir" },
-                    { question: "Ils ___ (décevoir) leurs parents", answer: "déçoivent", verb: "décevoir" },
-                    { question: "Je ___ (craindre) le froid", answer: "crains", verb: "craindre" },
-                    { question: "Tu ___ (peindre) un tableau", answer: "peins", verb: "peindre" },
-                    { question: "Elle ___ (joindre) ses mains", answer: "joint", verb: "joindre" },
-                    { question: "Nous ___ (coudre) des vêtements", answer: "cousons", verb: "coudre" },
-                    { question: "Vous ___ (moudre) le café", answer: "moulez", verb: "moudre" },
-                    { question: "Ils ___ (absoudre) le péché", answer: "absolvent", verb: "absoudre" },
-                    { question: "Je ___ (se taire) maintenant", answer: "me tais", verb: "se taire" },
-                    { question: "Tu ___ (extraire) le jus", answer: "extrais", verb: "extraire" },
-                    { question: "Il ___ (construire) une maison", answer: "construit", verb: "construire" }
+                    { question: "Je ___ (s'asseoir) ici", answer: "m'assieds" },
+                    { question: "Tu ___ (conduire) bien", answer: "conduis" },
+                    { question: "Il ___ (résoudre) le problème", answer: "résout" },
+                    { question: "Nous ___ (recevoir) des lettres", answer: "recevons" },
+                    { question: "Vous ___ (apercevoir) la montagne", answer: "apercevez" },
+                    { question: "Ils ___ (décevoir) leurs parents", answer: "déçoivent" },
+                    { question: "Je ___ (craindre) le froid", answer: "crains" },
+                    { question: "Tu ___ (peindre) un tableau", answer: "peins" },
+                    { question: "Elle ___ (joindre) ses mains", answer: "joint" },
+                    { question: "Nous ___ (coudre) des vêtements", answer: "cousons" },
+                    { question: "Vous ___ (moudre) le café", answer: "moulez" },
+                    { question: "Ils ___ (absoudre) le péché", answer: "absolvent" },
+                    { question: "Je ___ (se taire) maintenant", answer: "me tais" },
+                    { question: "Tu ___ (extraire) le jus", answer: "extrais" },
+                    { question: "Il ___ (construire) une maison", answer: "construit" },
+                    { question: "Nous ___ (traduire) le texte", answer: "traduisons" },
+                    { question: "Vous ___ (instruire) les étudiants", answer: "instruisez" },
+                    { question: "Elles ___ (détruire) les preuves", answer: "détruisent" },
+                    { question: "Je ___ (cuire) le dîner", answer: "cuis" },
+                    { question: "Tu ___ (nuire) à sa réputation", answer: "nuis" },
+                    { question: "Il ___ (luire) dans l'obscurité", answer: "luit" },
+                    { question: "Nous ___ (s'enfuir) rapidement", answer: "nous enfuyons" },
+                    { question: "Vous ___ (bouillir) l'eau", answer: "faites bouillir" },
+                    { question: "Ils ___ (accueillir) les invités", answer: "accueillent" },
+                    { question: "Je ___ (cueillir) des fleurs", answer: "cueille" },
+                    { question: "Tu ___ (recueillir) des informations", answer: "recueilles" },
+                    { question: "Elle ___ (assaillir) l'ennemi", answer: "assaille" },
+                    { question: "Nous ___ (tressaillir) de peur", answer: "tressaillons" },
+                    { question: "Vous ___ (défaillir) sous la pression", answer: "défaillez" },
+                    { question: "Ils ___ (saillir) du mur", answer: "saillent" }
                 ]
             },
             negation: {
                 beginner: [
-                    { question: "Je ___ professeur", answer: "ne suis pas", positive: "Je suis professeur" },
-                    { question: "Tu ___ de voiture", answer: "n'as pas", positive: "Tu as une voiture" },
-                    { question: "Il ___ au cinéma", answer: "ne va pas", positive: "Il va au cinéma" },
-                    { question: "Nous ___ de sport", answer: "ne faisons pas", positive: "Nous faisons du sport" },
-                    { question: "Vous ___ français", answer: "ne parlez pas", positive: "Vous parlez français" },
-                    { question: "Elles ___ fatiguées", answer: "ne sont pas", positive: "Elles sont fatiguées" },
-                    { question: "Je ___ d'argent", answer: "n'ai pas", positive: "J'ai de l'argent" },
-                    { question: "Tu ___ en ville", answer: "ne vas pas", positive: "Tu vas en ville" },
-                    { question: "Il ___ ses devoirs", answer: "ne fait pas", positive: "Il fait ses devoirs" },
-                    { question: "Nous ___ vous aider", answer: "ne pouvons pas", positive: "Nous pouvons vous aider" },
-                    { question: "Vous ___ partir", answer: "ne voulez pas", positive: "Vous voulez partir" },
-                    { question: "Ils ___ bien", answer: "ne parlent pas", positive: "Ils parlent bien" },
-                    { question: "Elle ___ son travail", answer: "ne finit pas", positive: "Elle finit son travail" },
-                    { question: "Je ___ content", answer: "ne suis pas", positive: "Je suis content" },
-                    { question: "Tu ___ le temps", answer: "n'as pas", positive: "Tu as le temps" }
+                    { question: "Je ___ professeur", answer: "ne suis pas" },
+                    { question: "Tu ___ de voiture", answer: "n'as pas" },
+                    { question: "Il ___ au cinéma", answer: "ne va pas" },
+                    { question: "Nous ___ de sport", answer: "ne faisons pas" },
+                    { question: "Vous ___ français", answer: "ne parlez pas" },
+                    { question: "Elles ___ fatiguées", answer: "ne sont pas" },
+                    { question: "Je ___ d'argent", answer: "n'ai pas" },
+                    { question: "Tu ___ en ville", answer: "ne vas pas" },
+                    { question: "Il ___ ses devoirs", answer: "ne fait pas" },
+                    { question: "Nous ___ vous aider", answer: "ne pouvons pas" },
+                    { question: "Vous ___ partir", answer: "ne voulez pas" },
+                    { question: "Ils ___ bien", answer: "ne parlent pas" },
+                    { question: "Elle ___ son travail", answer: "ne finit pas" },
+                    { question: "Je ___ content", answer: "ne suis pas" },
+                    { question: "Tu ___ le temps", answer: "n'as pas" },
+                    { question: "Il ___ à la maison", answer: "ne va pas" },
+                    { question: "Nous ___ de musique", answer: "ne faisons pas" },
+                    { question: "Vous ___ danser", answer: "ne pouvez pas" },
+                    { question: "Elles ___ sortir", answer: "ne veulent pas" },
+                    { question: "Je ___ anglais", answer: "ne parle pas" },
+                    { question: "Tu ___ tes études", answer: "ne finis pas" },
+                    { question: "Il ___ malade", answer: "n'est pas" },
+                    { question: "Nous ___ d'enfants", answer: "n'avons pas" },
+                    { question: "Vous ___ au bureau", answer: "n'allez pas" },
+                    { question: "Ils ___ la vaisselle", answer: "ne font pas" },
+                    { question: "Elle ___ conduire", answer: "ne peut pas" },
+                    { question: "Je ___ voyager", answer: "ne veux pas" },
+                    { question: "Tu ___ espagnol", answer: "ne parles pas" },
+                    { question: "Il ___ à l'heure", answer: "ne finit pas" },
+                    { question: "Nous ___ riches", answer: "ne sommes pas" }
                 ],
                 intermediate: [
-                    { question: "Elle ___ le français", answer: "ne parle pas", positive: "Elle parle français" },
-                    { question: "Vous ___ venir", answer: "ne pouvez pas", positive: "Vous pouvez venir" },
-                    { question: "Ils ___ partir", answer: "ne veulent pas", positive: "Ils veulent partir" }
+                    { question: "Elle ___ le français", answer: "ne parle pas" },
+                    { question: "Vous ___ venir", answer: "ne pouvez pas" },
+                    { question: "Ils ___ partir", answer: "ne veulent pas" },
+                    { question: "Je ___ le livre", answer: "ne lis pas" },
+                    { question: "Tu ___ bien", answer: "ne dors pas" },
+                    { question: "Il ___ de café", answer: "ne boit pas" },
+                    { question: "Nous ___ le film", answer: "ne voyons pas" },
+                    { question: "Vous ___ tôt", answer: "ne partez pas" },
+                    { question: "Elles ___ vite", answer: "ne courent pas" },
+                    { question: "Je ___ ma veste", answer: "ne mets pas" },
+                    { question: "Tu ___ la lettre", answer: "n'écris pas" },
+                    { question: "Il ___ le journal", answer: "ne lit pas" },
+                    { question: "Nous ___ de cadeaux", answer: "n'offrons pas" },
+                    { question: "Vous ___ souvent", answer: "ne mentez pas" },
+                    { question: "Ils ___ le record", answer: "ne battent pas" },
+                    { question: "Elle ___ la ville", answer: "ne connaît pas" },
+                    { question: "Je ___ le cours", answer: "ne suis pas" },
+                    { question: "Tu ___ ici", answer: "ne vis pas" },
+                    { question: "Il ___ jamais", answer: "ne rit pas" },
+                    { question: "Nous ___ les règles", answer: "ne comprenons pas" },
+                    { question: "Vous ___ l'autobus", answer: "n'attendez pas" },
+                    { question: "Elles ___ les escaliers", answer: "ne descendent pas" },
+                    { question: "Je ___ aux questions", answer: "ne réponds pas" },
+                    { question: "Tu ___ ta maison", answer: "ne vends pas" },
+                    { question: "Il ___ du bruit", answer: "n'entend pas" },
+                    { question: "Nous ___ nos clés", answer: "ne perdons pas" },
+                    { question: "Vous ___ visite", answer: "ne rendez pas" },
+                    { question: "Ils ___ la main", answer: "ne tendent pas" },
+                    { question: "Elle ___ ses idées", answer: "ne défend pas" },
+                    { question: "Je ___ le français", answer: "n'apprends pas" }
                 ],
                 advanced: [
-                    { question: "Je ___ rien", answer: "ne fais rien", positive: "Je fais quelque chose" },
-                    { question: "Il ___ personne", answer: "ne voit personne", positive: "Il voit quelqu'un" }
+                    { question: "Je ___ rien", answer: "ne fais rien" },
+                    { question: "Il ___ personne", answer: "ne voit personne" },
+                    { question: "Nous ___ nulle part", answer: "n'allons nulle part" },
+                    { question: "Vous ___ jamais", answer: "ne venez jamais" },
+                    { question: "Elles ___ aucun livre", answer: "ne lisent aucun livre" },
+                    { question: "Je ___ plus", answer: "ne mange plus" },
+                    { question: "Tu ___ ni français ni anglais", answer: "ne parles ni français ni anglais" },
+                    { question: "Il ___ que travailler", answer: "ne fait que travailler" },
+                    { question: "Nous ___ guère", answer: "ne sortons guère" },
+                    { question: "Vous ___ nullement", answer: "n'êtes nullement" },
+                    { question: "Ils ___ point", answer: "ne comprennent point" },
+                    { question: "Elle ___ aucunement", answer: "ne s'intéresse aucunement" },
+                    { question: "Je ___ pas encore", answer: "ne suis pas encore" },
+                    { question: "Tu ___ toujours pas", answer: "n'as toujours pas" },
+                    { question: "Il ___ non plus", answer: "ne vient non plus" },
+                    { question: "Nous ___ même pas", answer: "ne savons même pas" },
+                    { question: "Vous ___ absolument pas", answer: "ne comprenez absolument pas" },
+                    { question: "Elles ___ du tout", answer: "n'aiment du tout" },
+                    { question: "Je ___ pas du tout", answer: "ne suis pas du tout" },
+                    { question: "Tu ___ plus jamais", answer: "ne viens plus jamais" },
+                    { question: "Il ___ pas encore", answer: "n'est pas encore" },
+                    { question: "Nous ___ plus rien", answer: "ne faisons plus rien" },
+                    { question: "Vous ___ jamais rien", answer: "ne dites jamais rien" },
+                    { question: "Ils ___ plus personne", answer: "ne voient plus personne" },
+                    { question: "Elle ___ jamais personne", answer: "n'invite jamais personne" },
+                    { question: "Je ___ plus nulle part", answer: "ne vais plus nulle part" },
+                    { question: "Tu ___ jamais nulle part", answer: "ne sors jamais nulle part" },
+                    { question: "Il ___ pas non plus", answer: "ne comprend pas non plus" },
+                    { question: "Nous ___ plus guère", answer: "ne sortons plus guère" },
+                    { question: "Vous ___ pas encore", answer: "n'êtes pas encore" }
                 ]
             },
             questions: {
                 beginner: [
-                    { question: "___ professeur?", answer: "êtes-vous", statement: "Vous êtes professeur" },
-                    { question: "___ ce soir?", answer: "qu'est-ce que tu fais", statement: "Tu fais quelque chose ce soir" },
-                    { question: "___ en vacances?", answer: "où allez-vous", statement: "Vous allez quelque part en vacances" }
+                    { question: "___ professeur?", answer: "êtes-vous" },
+                    { question: "___ ce soir?", answer: "qu'est-ce que tu fais" },
+                    { question: "___ en vacances?", answer: "où allez-vous" },
+                    { question: "___ français?", answer: "parlez-vous" },
+                    { question: "___ faim?", answer: "as-tu" },
+                    { question: "___ à l'école?", answer: "va-t-il" },
+                    { question: "___ du sport?", answer: "faites-vous" },
+                    { question: "___ venir?", answer: "peuvent-ils" },
+                    { question: "___ partir?", answer: "veux-tu" },
+                    { question: "___ bien?", answer: "parle-t-elle" },
+                    { question: "___ étudiant?", answer: "es-tu" },
+                    { question: "___ une voiture?", answer: "avez-vous" },
+                    { question: "___ au cinéma?", answer: "allons-nous" },
+                    { question: "___ tes devoirs?", answer: "fais-tu" },
+                    { question: "___ nous aider?", answer: "pouvez-vous" },
+                    { question: "___ du café?", answer: "veulent-ils" },
+                    { question: "___ italien?", answer: "parles-tu" },
+                    { question: "___ le travail?", answer: "finit-elle" },
+                    { question: "___ médecin?", answer: "êtes-vous" },
+                    { question: "___ des frères?", answer: "a-t-il" },
+                    { question: "___ à la maison?", answer: "reste-t-elle" },
+                    { question: "___ de la musique?", answer: "écoutez-vous" },
+                    { question: "___ danser?", answer: "sais-tu" },
+                    { question: "___ en France?", answer: "habitent-ils" },
+                    { question: "___ content?", answer: "est-il" },
+                    { question: "___ des amis?", answer: "as-tu" },
+                    { question: "___ tard?", answer: "rentrez-vous" },
+                    { question: "___ de l'eau?", answer: "boit-elle" },
+                    { question: "___ ensemble?", answer: "travaillons-nous" },
+                    { question: "___ beau temps?", answer: "fait-il" }
                 ],
                 intermediate: [
-                    { question: "___ parler français?", answer: "est-ce que tu peux", statement: "Tu peux parler français" },
-                    { question: "___ ce livre?", answer: "aimes-tu", statement: "Tu aimes ce livre" }
+                    { question: "___ parler français?", answer: "est-ce que tu peux" },
+                    { question: "___ ce livre?", answer: "aimes-tu" },
+                    { question: "___ demain?", answer: "que fais-tu" },
+                    { question: "___ ce film?", answer: "avez-vous vu" },
+                    { question: "___ si tard?", answer: "pourquoi pars-tu" },
+                    { question: "___ le métro?", answer: "prend-il" },
+                    { question: "___ du café?", answer: "buvez-vous" },
+                    { question: "___ bien?", answer: "dors-tu" },
+                    { question: "___ une lettre?", answer: "écrit-elle" },
+                    { question: "___ des livres?", answer: "lisez-vous" },
+                    { question: "___ de la musique?", answer: "entends-tu" },
+                    { question: "___ vite?", answer: "court-il" },
+                    { question: "___ tes clés?", answer: "cherches-tu" },
+                    { question: "___ la vérité?", answer: "dit-elle" },
+                    { question: "___ en France?", answer: "vivez-vous" },
+                    { question: "___ le problème?", answer: "comprend-il" },
+                    { question: "___ l'autobus?", answer: "attends-tu" },
+                    { question: "___ les escaliers?", answer: "descend-elle" },
+                    { question: "___ aux questions?", answer: "répondez-vous" },
+                    { question: "___ votre maison?", answer: "vendez-vous" },
+                    { question: "___ du bruit?", answer: "entendent-ils" },
+                    { question: "___ vos clés?", answer: "perdez-vous" },
+                    { question: "___ visite?", answer: "rend-il" },
+                    { question: "___ la main?", answer: "tend-elle" },
+                    { question: "___ vos idées?", answer: "défendez-vous" },
+                    { question: "___ le français?", answer: "apprend-il" },
+                    { question: "___ tout le monde?", answer: "surprend-elle" },
+                    { question: "___ des cadeaux?", answer: "offrent-ils" },
+                    { question: "___ souvent?", answer: "ment-il" },
+                    { question: "___ le record?", answer: "bat-elle" }
                 ],
                 advanced: [
-                    { question: "___ de temps étudiez-vous?", answer: "combien", statement: "Vous étudiez pendant un certain temps" },
-                    { question: "___ pensez-vous de ce film?", answer: "que", statement: "Vous pensez quelque chose de ce film" }
+                    { question: "___ de temps étudiez-vous?", answer: "combien" },
+                    { question: "___ pensez-vous de ce film?", answer: "que" },
+                    { question: "___ êtes-vous venu?", answer: "comment" },
+                    { question: "___ avez-vous choisi?", answer: "pourquoi" },
+                    { question: "___ habitez-vous?", answer: "où" },
+                    { question: "___ partez-vous?", answer: "quand" },
+                    { question: "___ coûte ce livre?", answer: "combien" },
+                    { question: "___ appelez-vous?", answer: "comment vous" },
+                    { question: "___ âge avez-vous?", answer: "quel" },
+                    { question: "___ heure est-il?", answer: "quelle" },
+                    { question: "___ de personnes viendront?", answer: "combien" },
+                    { question: "___ langue préférez-vous?", answer: "quelle" },
+                    { question: "___ couleur aimez-vous?", answer: "quelle" },
+                    { question: "___ temps fait-il?", answer: "quel" },
+                    { question: "___ saison préférez-vous?", answer: "quelle" },
+                    { question: "___ jour sommes-nous?", answer: "quel" },
+                    { question: "___ année êtes-vous né?", answer: "en quelle" },
+                    { question: "___ mois partons-nous?", answer: "en quel" },
+                    { question: "___ ville habitez-vous?", answer: "dans quelle" },
+                    { question: "___ pays voyagez-vous?", answer: "dans quel" },
+                    { question: "___ université étudiez-vous?", answer: "dans quelle" },
+                    { question: "___ entreprise travaillez-vous?", answer: "dans quelle" },
+                    { question: "___ quartier habitez-vous?", answer: "dans quel" },
+                    { question: "___ direction allez-vous?", answer: "dans quelle" },
+                    { question: "___ sens comprenez-vous?", answer: "dans quel" },
+                    { question: "___ mesure êtes-vous d'accord?", answer: "dans quelle" },
+                    { question: "___ but faites-vous cela?", answer: "dans quel" },
+                    { question: "___ intention agissez-vous?", answer: "dans quelle" },
+                    { question: "___ esprit travaillez-vous?", answer: "dans quel" },
+                    { question: "___ perspective envisagez-vous?", answer: "dans quelle" }
                 ]
             },
             sentences: {
@@ -757,16 +785,16 @@
                 ],
                 intermediate: [
                     { 
-                        instruction: "Вони йдуть до ресторану щовечора", 
-                        answer: "ils vont au restaurant tous les soirs",
-                        words: ["ils", "vont", "au", "restaurant", "tous", "les", "soirs", "matin", "souvent", "jamais"]
+                        instruction: "Ми читаємо цікаві книги", 
+                        answer: "nous lisons des livres intéressants",
+                        words: ["nous", "lisons", "des", "livres", "intéressants", "souvent", "beaucoup", "ensemble"]
                     }
                 ],
                 advanced: [
                     { 
-                        instruction: "Якби я міг, я б подорожував світом", 
-                        answer: "si je pouvais je voyagerais dans le monde",
-                        words: ["si", "je", "pouvais", "voyagerais", "dans", "le", "monde", "serais", "ferais", "irais"]
+                        instruction: "Якби я міг, я б подорожував", 
+                        answer: "si je pouvais je voyagerais",
+                        words: ["si", "je", "pouvais", "voyagerais", "dans", "le", "monde", "serais", "ferais"]
                     }
                 ]
             },
@@ -774,32 +802,98 @@
                 beginner: [
                     { question: "Marie ___ très intelligente", options: ["suis", "est", "êtes"], answer: "est", context: "(Марі дуже розумна)" },
                     { question: "Nous ___ beaucoup de travail", options: ["avons", "sommes", "faisons"], answer: "avons", context: "(У нас багато роботи)" },
-                    { question: "Les étudiants ___ à l'université", options: ["vont", "font", "peuvent"], answer: "vont", context: "(Студенти йдуть до університету)" }
+                    { question: "Les étudiants ___ à l'université", options: ["vont", "font", "peuvent"], answer: "vont", context: "(Студенти йдуть до університету)" },
+                    { question: "Pierre ___ du café", options: ["veut", "boit", "fait"], answer: "boit", context: "(П'єр п'є каву)" },
+                    { question: "Elle ___ bien le piano", options: ["joue", "fait", "va"], answer: "joue", context: "(Вона добре грає на піаніно)" },
+                    { question: "Je ___ fatigué aujourd'hui", options: ["suis", "ai", "fais"], answer: "suis", context: "(Я втомився сьогодні)" },
+                    { question: "Tu ___ une belle voix", options: ["es", "as", "fais"], answer: "as", context: "(У тебе красивий голос)" },
+                    { question: "Il ___ au magasin", options: ["va", "fait", "a"], answer: "va", context: "(Він йде до магазину)" },
+                    { question: "Nous ___ nos devoirs", options: ["faisons", "sommes", "avons"], answer: "faisons", context: "(Ми робимо домашнє завдання)" },
+                    { question: "Vous ___ parler chinois", options: ["pouvez", "êtes", "allez"], answer: "pouvez", context: "(Ви можете говорити китайською)" },
+                    { question: "Ils ___ voyager en été", options: ["veulent", "sont", "ont"], answer: "veulent", context: "(Вони хочуть подорожувати влітку)" },
+                    { question: "Elle ___ très bien français", options: ["parle", "est", "a"], answer: "parle", context: "(Вона дуже добре говорить французькою)" },
+                    { question: "Je ___ mes études", options: ["finis", "suis", "ai"], answer: "finis", context: "(Я закінчую навчання)" },
+                    { question: "Tu ___ toujours en retard", options: ["es", "as", "vas"], answer: "es", context: "(Ти завжди спізнюєшся)" },
+                    { question: "Il ___ beaucoup d'amis", options: ["a", "est", "va"], answer: "a", context: "(У нього багато друзів)" },
+                    { question: "Nous ___ en France", options: ["allons", "sommes", "faisons"], answer: "allons", context: "(Ми їдемо до Франції)" },
+                    { question: "Vous ___ du sport", options: ["faites", "êtes", "avez"], answer: "faites", context: "(Ви займаєтеся спортом)" },
+                    { question: "Elles ___ nager", options: ["peuvent", "sont", "ont"], answer: "peuvent", context: "(Вони можуть плавати)" },
+                    { question: "Je ___ apprendre l'italien", options: ["veux", "suis", "ai"], answer: "veux", context: "(Я хочу вивчити італійську)" },
+                    { question: "Tu ___ très vite", options: ["parles", "es", "as"], answer: "parles", context: "(Ти говориш дуже швидко)" },
+                    { question: "Il ___ de la guitare", options: ["joue", "fait", "va"], answer: "joue", context: "(Він грає на гітарі)" },
+                    { question: "Nous ___ contents", options: ["sommes", "avons", "faisons"], answer: "sommes", context: "(Ми задоволені)" },
+                    { question: "Vous ___ de la chance", options: ["avez", "êtes", "allez"], answer: "avez", context: "(Вам пощастило)" },
+                    { question: "Ils ___ au restaurant", options: ["vont", "font", "sont"], answer: "vont", context: "(Вони йдуть до ресторану)" },
+                    { question: "Elle ___ cuisiner", options: ["peut", "est", "a"], answer: "peut", context: "(Вона може готувати)" },
+                    { question: "Je ___ me marier", options: ["veux", "suis", "ai"], answer: "veux", context: "(Я хочу одружитися)" },
+                    { question: "Tu ___ italien", options: ["parles", "es", "as"], answer: "parles", context: "(Ти говориш італійською)" },
+                    { question: "Il ___ tard", options: ["finit", "est", "a"], answer: "finit", context: "(Він закінчує пізно)" },
+                    { question: "Nous ___ médecins", options: ["sommes", "avons", "faisons"], answer: "sommes", context: "(Ми лікарі)" },
+                    { question: "Vous ___ raison", options: ["avez", "êtes", "allez"], answer: "avez", context: "(Ви маєте рацію)" }
                 ],
                 intermediate: [
-                    { question: "Pierre ___ du café le matin", options: ["veut", "boit", "fait"], answer: "boit", context: "(П'єр п'є каву вранці)" },
-                    { question: "Elle ___ bien le piano", options: ["joue", "fait", "va"], answer: "joue", context: "(Вона добре грає на піаніно)" }
-                ],
-                advanced: [
                     { question: "Il ___ ses erreurs", options: ["reconnaît", "fait", "va"], answer: "reconnaît", context: "(Він визнає свої помилки)" },
-                    { question: "Nous ___ ce problème", options: ["résolvons", "faisons", "avons"], answer: "résolvons", context: "(Ми вирішуємо цю проблему)" }
-                ]
-            },
-            translation: {
-                beginner: [
-                    { question: "Я студент", answer: "je suis étudiant" },
-                    { question: "Ти маєш машину", answer: "tu as une voiture" },
-                    { question: "Ми йдемо додому", answer: "nous allons à la maison" },
-                    { question: "Вони роблять домашнє завдання", answer: "ils font les devoirs" }
-                ],
-                intermediate: [
-                    { question: "Я вивчаю французьку мову три роки", answer: "j'étudie le français depuis trois ans" },
-                    { question: "Вона читає цікаву книгу", answer: "elle lit un livre intéressant" },
-                    { question: "Ми зустрічаємося з друзями щосуботи", answer: "nous rencontrons nos amis tous les samedis" }
+                    { question: "Nous ___ ce problème", options: ["résolvons", "faisons", "avons"], answer: "résolvons", context: "(Ми вирішуємо цю проблему)" },
+                    { question: "Elle ___ un livre passionnant", options: ["lit", "fait", "va"], answer: "lit", context: "(Вона читає захоплюючу книгу)" },
+                    { question: "Tu ___ une lettre", options: ["écris", "fais", "vas"], answer: "écris", context: "(Ти пишеш листа)" },
+                    { question: "Il ___ bien la nuit", options: ["dort", "fait", "va"], answer: "dort", context: "(Він добре спить вночі)" },
+                    { question: "Nous ___ des cadeaux", options: ["offrons", "faisons", "allons"], answer: "offrons", context: "(Ми дарували подарунки)" },
+                    { question: "Vous ___ souvent", options: ["mentez", "faites", "allez"], answer: "mentez", context: "(Ви часто брешете)" },
+                    { question: "Ils ___ très vite", options: ["courent", "font", "vont"], answer: "courent", context: "(Вони біжать дуже швидко)" },
+                    { question: "Je ___ ma veste", options: ["mets", "fais", "vais"], answer: "mets", context: "(Я одягаю куртку)" },
+                    { question: "Tu ___ le record", options: ["bats", "fais", "vas"], answer: "bats", context: "(Ти б'єш рекорд)" },
+                    { question: "Elle ___ Paris", options: ["connaît", "fait", "va"], answer: "connaît", context: "(Вона знає Париж)" },
+                    { question: "Nous ___ le cours", options: ["suivons", "faisons", "allons"], answer: "suivons", context: "(Ми відвідуємо курс)" },
+                    { question: "Vous ___ en France", options: ["vivez", "faites", "allez"], answer: "vivez", context: "(Ви живете у Франції)" },
+                    { question: "Ils ___ beaucoup", options: ["rient", "font", "vont"], answer: "rient", context: "(Вони багато сміються)" },
+                    { question: "Je ___ tout", options: ["comprends", "fais", "vais"], answer: "comprends", context: "(Я все розумію)" },
+                    { question: "Tu ___ l'autobus", options: ["attends", "fais", "vas"], answer: "attends", context: "(Ти чекаєш автобус)" },
+                    { question: "Il ___ les escaliers", options: ["descend", "fait", "va"], answer: "descend", context: "(Він спускається сходами)" },
+                    { question: "Nous ___ aux questions", options: ["répondons", "faisons", "allons"], answer: "répondons", context: "(Ми відповідаємо на питання)" },
+                    { question: "Vous ___ votre maison", options: ["vendez", "faites", "allez"], answer: "vendez", context: "(Ви продаєте свій будинок)" },
+                    { question: "Ils ___ du bruit", options: ["entendent", "font", "vont"], answer: "entendent", context: "(Вони чують шум)" },
+                    { question: "Elle ___ ses clés", options: ["perd", "fait", "va"], answer: "perd", context: "(Вона губить ключі)" },
+                    { question: "Je ___ visite", options: ["rends", "fais", "vais"], answer: "rends", context: "(Я наношу візит)" },
+                    { question: "Tu ___ la main", options: ["tends", "fais", "vas"], answer: "tends", context: "(Ти простягаєш руку)" },
+                    { question: "Il ___ ses idées", options: ["défend", "fait", "va"], answer: "défend", context: "(Він захищає свої ідеї)" },
+                    { question: "Nous ___ le français", options: ["apprenons", "faisons", "allons"], answer: "apprenons", context: "(Ми вивчаємо французьку)" },
+                    { question: "Vous ___ tout le monde", options: ["surprenez", "faites", "allez"], answer: "surprenez", context: "(Ви дивуєте всіх)" },
+                    { question: "Elles ___ en voyage", options: ["partent", "font", "vont"], answer: "partent", context: "(Вони від'їжджають у подорож)" },
+                    { question: "Je ___ du thé", options: ["bois", "fais", "vais"], answer: "bois", context: "(Я п'ю чай)" },
+                    { question: "Tu ___ le film", options: ["vois", "fais", "vas"], answer: "vois", context: "(Ти дивишся фільм)" },
+                    { question: "Elle ___ ce soir", options: ["sort", "fait", "va"], answer: "sort", context: "(Вона виходить сьогодні ввечері)" }
                 ],
                 advanced: [
-                    { question: "Якби я знав французьку краще, я б переїхав до Франції", answer: "si je connaissais mieux le français je déménagerais en france" },
-                    { question: "Важливо, щоб ви розуміли цю концепцію", answer: "il est important que vous compreniez ce concept" }
+                    { question: "Elle ___ des conclusions", options: ["tire", "fait", "prend"], answer: "tire", context: "(Вона робить висновки)" },
+                    { question: "Il ___ ses responsabilités", options: ["assume", "fait", "prend"], answer: "assume", context: "(Він бере на себе відповідальність)" },
+                    { question: "Nous ___ des obstacles", options: ["surmontons", "faisons", "prenons"], answer: "surmontons", context: "(Ми долаємо перешкоди)" },
+                    { question: "Vous ___ vos promesses", options: ["tenez", "faites", "prenez"], answer: "tenez", context: "(Ви дотримуєтеся своїх обіцянок)" },
+                    { question: "Ils ___ leurs objectifs", options: ["atteignent", "font", "prennent"], answer: "atteignent", context: "(Вони досягають своїх цілей)" },
+                    { question: "Je ___ la vérité", options: ["découvre", "fais", "prends"], answer: "découvre", context: "(Я відкриваю правду)" },
+                    { question: "Tu ___ tes erreurs", options: ["corriges", "fais", "prends"], answer: "corriges", context: "(Ти виправляєш свої помилки)" },
+                    { question: "Elle ___ une décision", options: ["prend", "fait", "tient"], answer: "prend", context: "(Вона приймає рішення)" },
+                    { question: "Nous ___ nos forces", options: ["unissons", "faisons", "prenons"], answer: "unissons", context: "(Ми об'єднуємо наші сили)" },
+                    { question: "Vous ___ l'avenir", options: ["prédisez", "faites", "prenez"], answer: "prédisez", context: "(Ви передбачаєте майбутнє)" },
+                    { question: "Ils ___ le problème", options: ["résolvent", "font", "prennent"], answer: "résolvent", context: "(Вони вирішують проблему)" },
+                    { question: "Je ___ mes principes", options: ["maintiens", "fais", "prends"], answer: "maintiens", context: "(Я дотримуюся своїх принципів)" },
+                    { question: "Tu ___ ton calme", options: ["gardes", "fais", "prends"], answer: "gardes", context: "(Ти зберігаєш спокій)" },
+                    { question: "Elle ___ sa parole", options: ["tient", "fait", "prend"], answer: "tient", context: "(Вона тримає слово)" },
+                    { question: "Nous ___ la situation", options: ["maîtrisons", "faisons", "prenons"], answer: "maîtrisons", context: "(Ми контролюємо ситуацію)" },
+                    { question: "Vous ___ vos émotions", options: ["contrôlez", "faites", "prenez"], answer: "contrôlez", context: "(Ви контролюєте свої емоції)" },
+                    { question: "Ils ___ leurs limites", options: ["dépassent", "font", "prennent"], answer: "dépassent", context: "(Вони перевершують свої межі)" },
+                    { question: "Je ___ mes habitudes", options: ["change", "fais", "prends"], answer: "change", context: "(Я змінюю свої звички)" },
+                    { question: "Tu ___ tes compétences", options: ["développes", "fais", "prends"], answer: "développes", context: "(Ти розвиваєш свої навички)" },
+                    { question: "Elle ___ son expérience", options: ["partage", "fait", "prend"], answer: "partage", context: "(Вона ділиться своїм досвідом)" },
+                    { question: "Nous ___ notre temps", options: ["gérons", "faisons", "prenons"], answer: "gérons", context: "(Ми управляємо своїм часом)" },
+                    { question: "Vous ___ vos ressources", options: ["optimisez", "faites", "prenez"], answer: "optimisez", context: "(Ви оптимізуєте свої ресурси)" },
+                    { question: "Ils ___ leur stratégie", options: ["adaptent", "font", "prennent"], answer: "adaptent", context: "(Вони адаптують свою стратегію)" },
+                    { question: "Je ___ mes connaissances", options: ["approfondis", "fais", "prends"], answer: "approfondis", context: "(Я поглиблюю свої знання)" },
+                    { question: "Tu ___ ton niveau", options: ["améliores", "fais", "prends"], answer: "améliores", context: "(Ти покращуєш свій рівень)" },
+                    { question: "Elle ___ ses objectifs", options: ["poursuit", "fait", "prend"], answer: "poursuit", context: "(Вона переслідує свої цілі)" },
+                    { question: "Nous ___ nos efforts", options: ["concentrons", "faisons", "prenons"], answer: "concentrons", context: "(Ми концентруємо свої зусилля)" },
+                    { question: "Vous ___ votre avenir", options: ["construisez", "faites", "prenez"], answer: "construisez", context: "(Ви будуєте своє майбутнє)" },
+                    { question: "Ils ___ leur destin", options: ["forgent", "font", "prennent"], answer: "forgent", context: "(Вони кують свою долю)" },
+                    { question: "Je ___ mes rêves", options: ["réalise", "fais", "prends"], answer: "réalise", context: "(Я здійснюю свої мрії)" }
                 ]
             },
             speed: {
@@ -811,23 +905,93 @@
                     { question: "___ avez", answer: "vous" },
                     { question: "ils ___", answer: "sont" },
                     { question: "___ ai", answer: "j" },
-                    { question: "elle ___", answer: "a" }
-                ],
-                intermediate: [
+                    { question: "elle ___", answer: "a" },
                     { question: "___ vais", answer: "je" },
                     { question: "tu ___", answer: "vas" },
+                    { question: "___ va", answer: "il" },
+                    { question: "nous ___", answer: "allons" },
+                    { question: "___ allez", answer: "vous" },
+                    { question: "elles ___", answer: "vont" },
+                    { question: "___ fais", answer: "je" },
+                    { question: "tu ___", answer: "fais" },
                     { question: "___ fait", answer: "il" },
                     { question: "nous ___", answer: "faisons" },
+                    { question: "___ faites", answer: "vous" },
+                    { question: "ils ___", answer: "font" },
+                    { question: "___ peux", answer: "je" },
+                    { question: "tu ___", answer: "peux" },
+                    { question: "___ peut", answer: "il" },
+                    { question: "nous ___", answer: "pouvons" },
                     { question: "___ pouvez", answer: "vous" },
-                    { question: "elles ___", answer: "veulent" }
+                    { question: "elles ___", answer: "peuvent" },
+                    { question: "___ veux", answer: "je" },
+                    { question: "tu ___", answer: "veux" },
+                    { question: "___ veut", answer: "il" },
+                    { question: "nous ___", answer: "voulons" }
                 ],
-                advanced: [
+                intermediate: [
                     { question: "___ prends", answer: "je" },
                     { question: "tu ___", answer: "viens" },
                     { question: "___ sort", answer: "il" },
                     { question: "nous ___", answer: "buvons" },
                     { question: "___ voyez", answer: "vous" },
-                    { question: "ils ___", answer: "partent" }
+                    { question: "elles ___", answer: "partent" },
+                    { question: "___ lis", answer: "je" },
+                    { question: "tu ___", answer: "écris" },
+                    { question: "___ dort", answer: "il" },
+                    { question: "nous ___", answer: "offrons" },
+                    { question: "___ mentez", answer: "vous" },
+                    { question: "ils ___", answer: "courent" },
+                    { question: "___ mets", answer: "je" },
+                    { question: "tu ___", answer: "bats" },
+                    { question: "___ connaît", answer: "il" },
+                    { question: "nous ___", answer: "suivons" },
+                    { question: "___ vivez", answer: "vous" },
+                    { question: "elles ___", answer: "rient" },
+                    { question: "___ comprends", answer: "je" },
+                    { question: "tu ___", answer: "attends" },
+                    { question: "___ descend", answer: "il" },
+                    { question: "nous ___", answer: "répondons" },
+                    { question: "___ vendez", answer: "vous" },
+                    { question: "ils ___", answer: "entendent" },
+                    { question: "___ perds", answer: "je" },
+                    { question: "tu ___", answer: "rends" },
+                    { question: "___ tend", answer: "il" },
+                    { question: "nous ___", answer: "défendons" },
+                    { question: "___ apprenez", answer: "vous" },
+                    { question: "elles ___", answer: "surprennent" }
+                ],
+                advanced: [
+                    { question: "___ conduis", answer: "je" },
+                    { question: "tu ___", answer: "résous" },
+                    { question: "___ reçoit", answer: "il" },
+                    { question: "nous ___", answer: "apercevons" },
+                    { question: "___ décevez", answer: "vous" },
+                    { question: "ils ___", answer: "craignent" },
+                    { question: "___ peins", answer: "je" },
+                    { question: "elle ___", answer: "joint" },
+                    { question: "nous ___", answer: "cousons" },
+                    { question: "___ moulez", answer: "vous" },
+                    { question: "ils ___", answer: "absolvent" },
+                    { question: "___ me tais", answer: "je" },
+                    { question: "tu ___", answer: "extrais" },
+                    { question: "___ construit", answer: "il" },
+                    { question: "nous ___", answer: "traduisons" },
+                    { question: "___ instruisez", answer: "vous" },
+                    { question: "elles ___", answer: "détruisent" },
+                    { question: "___ cuis", answer: "je" },
+                    { question: "tu ___", answer: "nuis" },
+                    { question: "___ luit", answer: "il" },
+                    { question: "nous ___", answer: "nous enfuyons" },
+                    { question: "___ accueillez", answer: "vous" },
+                    { question: "ils ___", answer: "cueillent" },
+                    { question: "___ recueille", answer: "je" },
+                    { question: "tu ___", answer: "assailles" },
+                    { question: "___ tressaille", answer: "il" },
+                    { question: "nous ___", answer: "défaillons" },
+                    { question: "___ saillez", answer: "vous" },
+                    { question: "elles ___", answer: "saillent" },
+                    { question: "___ m'assieds", answer: "je" }
                 ]
             }
         };
@@ -838,10 +1002,7 @@
             'streak-5': { name: 'Серія з 5 правильних', condition: () => gameState.currentStreak >= 5 },
             'streak-10': { name: 'Серія з 10 правильних', condition: () => gameState.currentStreak >= 10 },
             'completed-10': { name: '10 вправ виконано', condition: () => gameState.totalExercises >= 10 },
-            'completed-50': { name: '50 вправ виконано', condition: () => gameState.totalExercises >= 50 },
-            'perfect-score': { name: 'Ідеальний результат', condition: () => false }, // Will be set dynamically
-            'speed-demon': { name: 'Швидкісний демон', condition: () => false }, // Will be set dynamically
-            'master': { name: 'Майстер дієслів', condition: () => gameState.userLevel >= 10 }
+            'perfect-score': { name: 'Ідеальний результат', condition: () => false }
         };
 
         // Initialize app
@@ -850,6 +1011,7 @@
             setupEventListeners();
             generateQuestions();
             updateUI();
+            updateReviewTabVisibility();
         });
 
         function setupEventListeners() {
@@ -896,14 +1058,18 @@
         function generateQuestions() {
             const exercise = gameState.currentExercise;
             const difficulty = gameState.difficulty;
-            const data = exerciseData[exercise][difficulty];
             
+            // Special handling for review exercise
+            if (exercise === 'review') {
+                generateReviewQuestions();
+                resetCurrentExercise();
+                return;
+            }
+            
+            const data = exerciseData[exercise][difficulty];
             if (!data) return;
 
             // Track used questions to avoid repetition
-            if (!gameState.usedQuestions) {
-                gameState.usedQuestions = {};
-            }
             if (!gameState.usedQuestions[exercise]) {
                 gameState.usedQuestions[exercise] = {};
             }
@@ -958,33 +1124,26 @@
         }
 
         function generateQuestionHTML(question, index, exerciseType) {
-            const questionNumber = `<div class="question-number">${index + 1}</div>`;
-            let html = questionNumber;
+            let html = '';
 
             switch (exerciseType) {
                 case 'conjugation':
-                    html += `
+                case 'negation':
+                    html = `
                         ${question.question.replace('___', `<input type="text" id="q${index}" data-answer="${question.answer}" placeholder="...">`)}
                         <div class="result">Правильна відповідь: ${question.answer}</div>
                     `;
                     break;
 
-                case 'negation':
-                    html += `
-                        ${question.question.replace('___', `<input type="text" id="q${index}" data-answer="${question.answer}" placeholder="..." style="width: 200px;">`)}
-                        <div class="result">Правильна відповідь: ${question.answer}</div>
-                    `;
-                    break;
-
                 case 'questions':
-                    html += `
+                    html = `
                         ${question.question.replace('___', `<input type="text" id="q${index}" data-answer="${question.answer}" placeholder="..." style="width: 200px;">`)}
                         <div class="result">Правильна відповідь: ${question.answer}</div>
                     `;
                     break;
 
                 case 'sentences':
-                    html += `
+                    html = `
                         <p><strong>Складіть речення:</strong> "${question.instruction}"</p>
                         <div class="sentence-builder">
                             ${question.words.map(word => `<span class="word-option" data-word="${word}">${word}</span>`).join('')}
@@ -997,22 +1156,14 @@
 
                 case 'context':
                     const options = question.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
-                    html += `
+                    html = `
                         ${question.question.replace('___', `<select id="q${index}" data-answer="${question.answer}"><option value="">Виберіть...</option>${options}</select>`)} ${question.context}
                         <div class="result">Правильна відповідь: ${question.answer}</div>
                     `;
                     break;
 
-                case 'translation':
-                    html += `
-                        <strong>Перекладіть:</strong> "${question.question}"<br>
-                        <input type="text" id="q${index}" data-answer="${question.answer}" placeholder="Ваш переклад..." style="width: 300px; margin-top: 10px;">
-                        <div class="result">Правильна відповідь: ${question.answer}</div>
-                    `;
-                    break;
-
                 case 'speed':
-                    html += `
+                    html = `
                         ${question.question.replace('___', `<input type="text" id="q${index}" data-answer="${question.answer}" placeholder="..." style="width: 100px;">`)}
                         <div class="result">Правильна відповідь: ${question.answer}</div>
                     `;
@@ -1041,12 +1192,12 @@
                     gameState.sentenceBuilders[sentenceId].push(word);
                     this.classList.add('used');
                     
-                    updateSentenceDisplay(sentenceId, questionIndex);
+                    updateSentenceDisplay(sentenceId);
                 });
             });
         }
 
-        function updateSentenceDisplay(sentenceId, questionIndex) {
+        function updateSentenceDisplay(sentenceId) {
             const display = document.getElementById(sentenceId);
             if (display && gameState.sentenceBuilders[sentenceId]) {
                 display.textContent = gameState.sentenceBuilders[sentenceId].join(' ');
@@ -1056,7 +1207,7 @@
         function clearSentence(questionIndex) {
             const sentenceId = `sentence${questionIndex}`;
             gameState.sentenceBuilders[sentenceId] = [];
-            updateSentenceDisplay(sentenceId, questionIndex);
+            updateSentenceDisplay(sentenceId);
             
             const questionDiv = document.querySelectorAll('.question')[questionIndex];
             questionDiv.querySelectorAll('.word-option').forEach(option => {
@@ -1100,7 +1251,9 @@
                     userAnswer = gameState.sentenceBuilders[sentenceId] ? gameState.sentenceBuilders[sentenceId].join(' ') : '';
                 } else {
                     const input = document.getElementById(`q${index}`);
-                    userAnswer = input.value || input.selectedOptions?.[0]?.value || '';
+                    if (input) {
+                        userAnswer = input.value || input.selectedOptions?.[0]?.value || '';
+                    }
                 }
                 
                 const isCorrect = normalizeAnswer(userAnswer) === normalizeAnswer(correctAnswer);
@@ -1112,16 +1265,57 @@
                 } else {
                     questionDiv.classList.add('incorrect');
                     questionDiv.classList.remove('correct');
-                    questionDiv.querySelector('.result').style.display = 'block';
+                    const resultDiv = questionDiv.querySelector('.result');
+                    if (resultDiv) {
+                        resultDiv.style.display = 'block';
+                    }
+                    
+                    // Add to mistake questions for review
+                    if (gameState.currentExercise !== 'review') {
+                        const mistakeQuestion = {
+                            ...q,
+                            exerciseType: gameState.currentExercise,
+                            userAnswer: userAnswer,
+                            timestamp: Date.now()
+                        };
+                        
+                        // Check if this question is already in mistakes (avoid duplicates)
+                        const isDuplicate = gameState.mistakeQuestions.some(mistake => 
+                            mistake.question === q.question && 
+                            mistake.answer === q.answer && 
+                            mistake.exerciseType === gameState.currentExercise
+                        );
+                        
+                        if (!isDuplicate) {
+                            gameState.mistakeQuestions.push(mistakeQuestion);
+                            
+                            // Keep only last 50 mistakes to avoid too large storage
+                            if (gameState.mistakeQuestions.length > 50) {
+                                gameState.mistakeQuestions = gameState.mistakeQuestions.slice(-50);
+                            }
+                        }
+                    }
                 }
             });
             
             updateGameState(correctCount, totalQuestions);
             updateUI();
+            updateScoreDisplay(correctCount, totalQuestions);
             checkAchievements();
+            updateReviewTabVisibility();
             
             if (gameState.speedTimer) {
                 clearInterval(gameState.speedTimer);
+            }
+            
+            // Show completion notification
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            if (percentage === 100) {
+                showNotification(`Відмінно! Всі відповіді правильні! 🎉`, 'success');
+            } else if (percentage >= 70) {
+                showNotification(`Добре! ${percentage}% правильних відповідей! 👍`, 'success');
+            } else {
+                showNotification(`${percentage}% правильних. Продовжуйте вчитися! 💪`, 'warning');
             }
         }
 
@@ -1131,9 +1325,6 @@
             
             if (correctCount === totalQuestions) {
                 gameState.currentStreak++;
-                if (gameState.currentStreak > gameState.bestStreak) {
-                    gameState.bestStreak = gameState.currentStreak;
-                }
             } else {
                 gameState.currentStreak = 0;
             }
@@ -1167,14 +1358,6 @@
                 }
             }
             
-            // Check for speed demon (completing speed exercise in under 15 seconds)
-            if (gameState.currentExercise === 'speed' && gameState.speedTimeLeft > 15) {
-                if (!gameState.achievements.includes('speed-demon')) {
-                    gameState.achievements.push('speed-demon');
-                    unlockAchievement('speed-demon');
-                }
-            }
-            
             updateAchievementsDisplay();
         }
 
@@ -1190,6 +1373,72 @@
                     achievement.classList.add('unlocked');
                 }
             });
+        }
+
+        function updateReviewTabVisibility() {
+            const reviewTab = document.getElementById('reviewTab');
+            const mistakeCount = gameState.mistakeQuestions.length;
+            
+            if (mistakeCount > 0) {
+                reviewTab.style.display = 'block';
+                reviewTab.innerHTML = `🔄 Повторення помилок (${mistakeCount})`;
+            } else {
+                reviewTab.style.display = 'none';
+            }
+        }
+
+        function generateReviewQuestions() {
+            const container = document.getElementById('reviewQuestions');
+            
+            if (gameState.mistakeQuestions.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <p style="font-size: 1.2em; color: #667eea;">📚 Тут з'являться питання, на які ви помилялися</p>
+                        <p style="color: #718096;">Спочатку пройдіть інші вправи, щоб накопичити помилки для повторення</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Take up to 6 most recent mistakes
+            const recentMistakes = gameState.mistakeQuestions.slice(-6);
+            gameState.currentQuestions = recentMistakes;
+            
+            container.innerHTML = '';
+            
+            recentMistakes.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                
+                let questionHTML = `
+                    <div class="review-info">
+                        <strong>Тип вправи:</strong> ${getExerciseDisplayName(q.exerciseType)} | 
+                        <strong>Ваша попередня відповідь:</strong> "${q.userAnswer}"
+                    </div>
+                `;
+                
+                questionHTML += generateQuestionHTML(q, index, q.exerciseType);
+                
+                questionDiv.innerHTML = questionHTML;
+                container.appendChild(questionDiv);
+            });
+            
+            // Setup sentence building if needed
+            if (recentMistakes.some(q => q.exerciseType === 'sentences')) {
+                setupSentenceBuilding();
+            }
+        }
+
+        function getExerciseDisplayName(exerciseType) {
+            const names = {
+                'conjugation': 'Відмінювання',
+                'negation': 'Заперечення',
+                'questions': 'Питання',
+                'sentences': 'Складання речень',
+                'context': 'Контекст',
+                'speed': 'Швидкість'
+            };
+            return names[exerciseType] || exerciseType;
         }
 
         function normalizeAnswer(answer) {
@@ -1231,7 +1480,7 @@
         }
 
         function nextExercise() {
-            const exercises = ['conjugation', 'negation', 'questions', 'sentences', 'context', 'translation', 'speed'];
+            const exercises = ['conjugation', 'negation', 'questions', 'sentences', 'context', 'speed'];
             const currentIndex = exercises.indexOf(gameState.currentExercise);
             const nextIndex = (currentIndex + 1) % exercises.length;
             
@@ -1285,7 +1534,7 @@
             }
         }
 
-        // Global functions for sentence building
+        // Global function for sentence building
         window.clearSentence = clearSentence;
     </script>
 </body>
