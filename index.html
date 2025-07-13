@@ -1563,7 +1563,7 @@
                     { question: "___ matière étudiez-vous?", answer: "quelle", context: "C'est difficile.", options: ["quel", "quelle", "quels", "quelles"] },
                     { question: "___ examen passez-vous?", answer: "quel", context: "Je suis stressé.", options: ["quel", "quelle", "quels", "quelles"] },
                     { question: "___ note avez-vous?", answer: "quelle", context: "C'est bien.", options: ["quel", "quelle", "quels", "quelles"] },
-                    { question: "___ devoir faites-vous?", answer: "quel", context: "C'est pour demain.", options: ["quel", "quelle", "quels", "quelles"] },
+                    { question: "___ devoir faites-vous?", answer: "quel", context: "C'est для demain.", options: ["quel", "quelle", "quels", "quelles"] },
                     { question: "___ projet travaillez-vous?", answer: "sur quel", context: "C'est important.", options: ["sur quel", "sur quelle", "dans quel", "dans quelle"] },
                     { question: "___ réunion avez-vous?", answer: "quelle", context: "C'est à 14h.", options: ["quel", "quelle", "quels", "quelles"] },
                     { question: "___ voyage faites-vous?", answer: "quel", context: "Je pars en France.", options: ["quel", "quelle", "quels", "quelles"] },
@@ -1949,7 +1949,7 @@
                     { question: "Перекладіть: Ви помічаєте гору", answer: "Vous apercevez la montagne", direction: "uk-fr" },
                     { question: "Перекладіть: Вони розчаровують батьків", answer: "Ils déçoivent leurs parents", direction: "uk-fr" },
                     { question: "Перекладіть: Я боюся холоду", answer: "Je crains le froid", direction: "uk-fr" },
-                    { question: "Перекладіть: Ти малюєш картину", answer: "Tu peins un tableau", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти малюєш картинину", answer: "Tu peins un tableau", direction: "uk-fr" },
                     { question: "Перекладіть: Вона з'єднує руки", answer: "Elle joint ses mains", direction: "uk-fr" },
                     { question: "Перекладіть: Ми шиємо одяг", answer: "Nous cousons des vêtements", direction: "uk-fr" },
                     { question: "Перекладіть: Ви мелете каву", answer: "Vous moulez le café", direction: "uk-fr" },
@@ -2685,8 +2685,16 @@
             document.body.appendChild(tooltip);
             
             const rect = event.target.getBoundingClientRect();
-            tooltip.style.left = rect.left + 'px';
-            tooltip.style.top = (rect.bottom + 5) + 'px';
+            // Use scrollX/scrollY to get absolute position
+            let left = rect.left + window.scrollX;
+            let top = rect.bottom + window.scrollY + 5;
+            // Prevent overflow on the right
+            const tooltipWidth = tooltip.offsetWidth || 200;
+            if (left + tooltipWidth > window.innerWidth + window.scrollX) {
+                left = window.innerWidth + window.scrollX - tooltipWidth - 10;
+            }
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
             
             setTimeout(() => tooltip.classList.add('show'), 100);
             
