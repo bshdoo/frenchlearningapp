@@ -371,6 +371,7 @@
                 <div class="tab" data-exercise="sentences">🔄 Складання речень</div>
                 <div class="tab" data-exercise="context">📖 Контекст</div>
                 <div class="tab" data-exercise="speed">⚡ Швидкість</div>
+                <div class="tab" data-exercise="translation">🌐 Переклад</div>
                 <div class="tab" data-exercise="review" id="reviewTab" style="display: none;">🔄 Повторення помилок</div>
             </div>
             
@@ -432,7 +433,14 @@
                 <div id="speedTimer" style="text-align: center; font-size: 2em; color: #f56565; margin: 20px 0;"></div>
             </div>
 
-            <!-- Exercise 7: Review -->
+            <!-- Exercise 7: Translation -->
+            <div class="exercise" id="translation">
+                <h2>🌐 Переклад</h2>
+                <div class="hint">💡 Перекладіть з української на французьку або навпаки</div>
+                <div id="translationQuestions"></div>
+            </div>
+
+            <!-- Exercise 8: Review -->
             <div class="exercise" id="review">
                 <h2>🔄 Повторення помилок</h2>
                 <div class="hint">💡 Повторіть питання, на які ви помилялися раніше</div>
@@ -1562,6 +1570,169 @@
                     { question: "Vous ___ facilement", answer: "vous calmez" },
                     { question: "Ils ___ soudain", answer: "se taisent" }
                 ]
+            },
+            translation: {
+                beginner: [
+                    { question: "Перекладіть: Я студент", answer: "Je suis étudiant", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти говориш французькою", answer: "Tu parles français", direction: "uk-fr" },
+                    { question: "Перекладіть: Він йде на роботу", answer: "Il va au travail", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми разом", answer: "Nous sommes ensemble", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви добре", answer: "Vous allez bien", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони слідують курсу", answer: "Ils suivent le cours", direction: "uk-fr" },
+                    { question: "Перекладіть: Вона має машину", answer: "Elle a une voiture", direction: "uk-fr" },
+                    { question: "Перекладіть: Я роблю домашнє завдання", answer: "Je fais mes devoirs", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти п'єш каву", answer: "Tu bois du café", direction: "uk-fr" },
+                    { question: "Перекладіть: Він читає книгу", answer: "Il lit un livre", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми дивимося телевізор", answer: "Nous regardons la télé", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви йдете в місто", answer: "Vous allez en ville", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони слухають музику", answer: "Elles écoutent la musique", direction: "uk-fr" },
+                    { question: "Перекладіть: Я пишу листа", answer: "J'écris une lettre", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти добре спиш", answer: "Tu dors bien", direction: "uk-fr" },
+                    { question: "Перекладіть: Він читає газету", answer: "Il lit le journal", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми бачимо фільм", answer: "Nous voyons le film", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви бігаєте швидко", answer: "Vous courez vite", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони говорять правду", answer: "Ils disent la vérité", direction: "uk-fr" },
+                    { question: "Перекладіть: Вона розуміє проблему", answer: "Elle comprend le problème", direction: "uk-fr" },
+                    { question: "Перекладіть: Я беру автобус", answer: "Je prends l'autobus", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти спускаєшся сходами", answer: "Tu descends les escaliers", direction: "uk-fr" },
+                    { question: "Перекладіть: Він відповідає на питання", answer: "Il répond aux questions", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми продаємо будинок", answer: "Nous vendons la maison", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви чуєте шум", answer: "Vous entendez du bruit", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони гублять ключі", answer: "Elles perdent leurs clés", direction: "uk-fr" },
+                    { question: "Перекладіть: Я відвідую", answer: "Je rends visite", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти простягаєш руку", answer: "Tu tends la main", direction: "uk-fr" },
+                    { question: "Перекладіть: Він захищає свої ідеї", answer: "Il défend ses idées", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми вивчаємо французьку", answer: "Nous apprenons le français", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви дивуєте всіх", answer: "Vous surprenez tout le monde", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони дарують подарунки", answer: "Ils offrent des cadeaux", direction: "uk-fr" },
+                    { question: "Перекладіть: Вона часто бреше", answer: "Elle ment souvent", direction: "uk-fr" },
+                    { question: "Перекладіть: Я б'ю рекорд", answer: "Je bats le record", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти знаєш місто", answer: "Tu connais la ville", direction: "uk-fr" },
+                    { question: "Перекладіть: Він слідує курсу", answer: "Il suit le cours", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми живемо тут", answer: "Nous vivons ici", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви багато смієтеся", answer: "Vous riez beaucoup", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони все розуміють", answer: "Elles comprennent tout", direction: "uk-fr" },
+                    { question: "Перекладіть: Я довго чекаю", answer: "J'attends longtemps", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти швидко спускаєшся", answer: "Tu descends vite", direction: "uk-fr" },
+                    { question: "Перекладіть: Він відповідає на питання", answer: "Il répond aux questions", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми продаємо його будинок", answer: "Nous vendons sa maison", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви чуєте музику", answer: "Vous entendez la musique", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони гублять свої ключі", answer: "Ils perdent leurs clés", direction: "uk-fr" },
+                    { question: "Перекладіть: Вона відвідує", answer: "Elle rend visite", direction: "uk-fr" },
+                    { question: "Перекладіть: Я простягаю руку", answer: "Je tends la main", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти захищаєш свої ідеї", answer: "Tu défends tes idées", direction: "uk-fr" },
+                    { question: "Перекладіть: Він вивчає італійську", answer: "Il apprend l'italien", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми дивуємо всіх", answer: "Nous surprenons tout le monde", direction: "uk-fr" }
+                ],
+                intermediate: [
+                    { question: "Перекладіть: Je suis étudiant", answer: "Я студент", direction: "fr-uk" },
+                    { question: "Перекладіть: Tu parles français", answer: "Ти говориш французькою", direction: "fr-uk" },
+                    { question: "Перекладіть: Il va au travail", answer: "Він йде на роботу", direction: "fr-uk" },
+                    { question: "Перекладіть: Nous sommes ensemble", answer: "Ми разом", direction: "fr-uk" },
+                    { question: "Перекладіть: Vous allez bien", answer: "Ви добре", direction: "fr-uk" },
+                    { question: "Перекладіть: Ils suivent le cours", answer: "Вони слідують курсу", direction: "fr-uk" },
+                    { question: "Перекладіть: Elle a une voiture", answer: "Вона має машину", direction: "fr-uk" },
+                    { question: "Перекладіть: Je fais mes devoirs", answer: "Я роблю домашнє завдання", direction: "fr-uk" },
+                    { question: "Перекладіть: Tu bois du café", answer: "Ти п'єш каву", direction: "fr-uk" },
+                    { question: "Перекладіть: Il lit un livre", answer: "Він читає книгу", direction: "fr-uk" },
+                    { question: "Перекладіть: Nous regardons la télé", answer: "Ми дивимося телевізор", direction: "fr-uk" },
+                    { question: "Перекладіть: Vous allez en ville", answer: "Ви йдете в місто", direction: "fr-uk" },
+                    { question: "Перекладіть: Elles écoutent la musique", answer: "Вони слухають музику", direction: "fr-uk" },
+                    { question: "Перекладіть: J'écris une lettre", answer: "Я пишу листа", direction: "fr-uk" },
+                    { question: "Перекладіть: Tu dors bien", answer: "Ти добре спиш", direction: "fr-uk" },
+                    { question: "Перекладіть: Il lit le journal", answer: "Він читає газету", direction: "fr-uk" },
+                    { question: "Перекладіть: Nous voyons le film", answer: "Ми бачимо фільм", direction: "fr-uk" },
+                    { question: "Перекладіть: Vous courez vite", answer: "Ви бігаєте швидко", direction: "fr-uk" },
+                    { question: "Перекладіть: Ils disent la vérité", answer: "Вони говорять правду", direction: "fr-uk" },
+                    { question: "Перекладіть: Elle comprend le problème", answer: "Вона розуміє проблему", direction: "fr-uk" },
+                    { question: "Перекладіть: Je prends l'autobus", answer: "Я беру автобус", direction: "fr-uk" },
+                    { question: "Перекладіть: Tu descends les escaliers", answer: "Ти спускаєшся сходами", direction: "fr-uk" },
+                    { question: "Перекладіть: Il répond aux questions", answer: "Він відповідає на питання", direction: "fr-uk" },
+                    { question: "Перекладіть: Nous vendons la maison", answer: "Ми продаємо будинок", direction: "fr-uk" },
+                    { question: "Перекладіть: Vous entendez du bruit", answer: "Ви чуєте шум", direction: "fr-uk" },
+                    { question: "Перекладіть: Elles perdent leurs clés", answer: "Вони гублять ключі", direction: "fr-uk" },
+                    { question: "Перекладіть: Je rends visite", answer: "Я відвідую", direction: "fr-uk" },
+                    { question: "Перекладіть: Tu tends la main", answer: "Ти простягаєш руку", direction: "fr-uk" },
+                    { question: "Перекладіть: Il défend ses idées", answer: "Він захищає свої ідеї", direction: "fr-uk" },
+                    { question: "Перекладіть: Nous apprenons le français", answer: "Ми вивчаємо французьку", direction: "fr-uk" },
+                    { question: "Перекладіть: Vous surprenez tout le monde", answer: "Ви дивуєте всіх", direction: "fr-uk" },
+                    { question: "Перекладіть: Ils offrent des cadeaux", answer: "Вони дарують подарунки", direction: "fr-uk" },
+                    { question: "Перекладіть: Elle ment souvent", answer: "Вона часто бреше", direction: "fr-uk" },
+                    { question: "Перекладіть: Je bats le record", answer: "Я б'ю рекорд", direction: "fr-uk" },
+                    { question: "Перекладіть: Tu connais la ville", answer: "Ти знаєш місто", direction: "fr-uk" },
+                    { question: "Перекладіть: Il suit le cours", answer: "Він слідує курсу", direction: "fr-uk" },
+                    { question: "Перекладіть: Nous vivons ici", answer: "Ми живемо тут", direction: "fr-uk" },
+                    { question: "Перекладіть: Vous riez beaucoup", answer: "Ви багато смієтеся", direction: "fr-uk" },
+                    { question: "Перекладіть: Elles comprennent tout", answer: "Вони все розуміють", direction: "fr-uk" },
+                    { question: "Перекладіть: J'attends longtemps", answer: "Я довго чекаю", direction: "fr-uk" },
+                    { question: "Перекладіть: Tu descends vite", answer: "Ти швидко спускаєшся", direction: "fr-uk" },
+                    { question: "Перекладіть: Il répond aux questions", answer: "Він відповідає на питання", direction: "fr-uk" },
+                    { question: "Перекладіть: Nous vendons sa maison", answer: "Ми продаємо його будинок", direction: "fr-uk" },
+                    { question: "Перекладіть: Vous entendez la musique", answer: "Ви чуєте музику", direction: "fr-uk" },
+                    { question: "Перекладіть: Ils perdent leurs clés", answer: "Вони гублять свої ключі", direction: "fr-uk" },
+                    { question: "Перекладіть: Elle rend visite", answer: "Вона відвідує", direction: "fr-uk" },
+                    { question: "Перекладіть: Je tends la main", answer: "Я простягаю руку", direction: "fr-uk" },
+                    { question: "Перекладіть: Tu défends tes idées", answer: "Ти захищаєш свої ідеї", direction: "fr-uk" },
+                    { question: "Перекладіть: Il apprend l'italien", answer: "Він вивчає італійську", direction: "fr-uk" },
+                    { question: "Перекладіть: Nous surprenons tout le monde", answer: "Ми дивуємо всіх", direction: "fr-uk" }
+                ],
+                advanced: [
+                    { question: "Перекладіть: Я сиджу тут", answer: "Je m'assieds ici", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти добре керуєш", answer: "Tu conduis bien", direction: "uk-fr" },
+                    { question: "Перекладіть: Він вирішує проблему", answer: "Il résout le problème", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми отримуємо листи", answer: "Nous recevons des lettres", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви помічаєте гору", answer: "Vous apercevez la montagne", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони розчаровують батьків", answer: "Ils déçoivent leurs parents", direction: "uk-fr" },
+                    { question: "Перекладіть: Я боюся холоду", answer: "Je crains le froid", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти малюєш картину", answer: "Tu peins un tableau", direction: "uk-fr" },
+                    { question: "Перекладіть: Вона з'єднує руки", answer: "Elle joint ses mains", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми шиємо одяг", answer: "Nous cousons des vêtements", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви мелете каву", answer: "Vous moulez le café", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони виправляють гріх", answer: "Ils absolvent le péché", direction: "uk-fr" },
+                    { question: "Перекладіть: Я мовчу зараз", answer: "Je me tais maintenant", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти витягуєш сік", answer: "Tu extrais le jus", direction: "uk-fr" },
+                    { question: "Перекладіть: Він будує будинок", answer: "Il construit une maison", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми перекладаємо текст", answer: "Nous traduisons le texte", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви навчаєте студентів", answer: "Vous instruisez les étudiants", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони знищують докази", answer: "Elles détruisent les preuves", direction: "uk-fr" },
+                    { question: "Перекладіть: Я готую вечерю", answer: "Je cuis le dîner", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти шкодиш його репутації", answer: "Tu nuis à sa réputation", direction: "uk-fr" },
+                    { question: "Перекладіть: Він світиться в темряві", answer: "Il luit dans l'obscurité", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми тікаємо швидко", answer: "Nous nous enfuyons rapidement", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви кип'ятите воду", answer: "Vous faites bouillir l'eau", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони приймають гостей", answer: "Ils accueillent les invités", direction: "uk-fr" },
+                    { question: "Перекладіть: Я збираю квіти", answer: "Je cueille des fleurs", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти збираєш інформацію", answer: "Tu recueilles des informations", direction: "uk-fr" },
+                    { question: "Перекладіть: Вона атакує ворога", answer: "Elle assaille l'ennemi", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми здригаємося від страху", answer: "Nous tressaillons de peur", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви здаєтеся під тиском", answer: "Vous défaillez sous la pression", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони виступають зі стіни", answer: "Ils saillent du mur", direction: "uk-fr" },
+                    { question: "Перекладіть: Я встаю рано", answer: "Je me lève tôt", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти лягаєш пізно", answer: "Tu te couches tard", direction: "uk-fr" },
+                    { question: "Перекладіть: Він гуляє в парку", answer: "Il se promène au parc", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми відпочиваємо тут", answer: "Nous nous reposons ici", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви завжди поспішаєте", answer: "Vous vous dépêchez toujours", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони пам'ятають все", answer: "Elles se souviennent de tout", direction: "uk-fr" },
+                    { question: "Перекладіть: Я дивуюся чому", answer: "Je me demande pourquoi", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти часто помиляєшся", answer: "Tu te trompes souvent", direction: "uk-fr" },
+                    { question: "Перекладіть: Він насміхається з нас", answer: "Il se moque de nous", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми рідко сердимося", answer: "Nous nous fâchons rarement", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви швидко заспокоюєтеся", answer: "Vous vous calmez vite", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони мовчать зараз", answer: "Ils se taisent maintenant", direction: "uk-fr" },
+                    { question: "Перекладіть: Вона прокидається рано", answer: "Elle se réveille tôt", direction: "uk-fr" },
+                    { question: "Перекладіть: Я лягаю пізно", answer: "Je me couche tard", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти встаєш о 7 годині", answer: "Tu te lèves à 7h", direction: "uk-fr" },
+                    { question: "Перекладіть: Він добре відпочиває", answer: "Il se repose bien", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми гуляємо разом", answer: "Nous nous promenons ensemble", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви пам'ятаєте мене", answer: "Vous vous souvenez de moi", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони завжди поспішають", answer: "Elles se dépêchent toujours", direction: "uk-fr" },
+                    { question: "Перекладіть: Я дивуюся відповідь", answer: "Je me demande la réponse", direction: "uk-fr" },
+                    { question: "Перекладіть: Ти рідко помиляєшся", answer: "Tu te trompes rarement", direction: "uk-fr" },
+                    { question: "Перекладіть: Він насміхається ласкаво", answer: "Il se moque gentiment", direction: "uk-fr" },
+                    { question: "Перекладіть: Ми ніколи не сердимося", answer: "Nous nous fâchons jamais", direction: "uk-fr" },
+                    { question: "Перекладіть: Ви легко заспокоюєтеся", answer: "Vous vous calmez facilement", direction: "uk-fr" },
+                    { question: "Перекладіть: Вони раптом мовчать", answer: "Ils se taisent soudain", direction: "uk-fr" }
+                ]
             }
         };
 
@@ -1762,6 +1933,15 @@
                 case 'speed':
                     html = `
                         ${question.question.replace('___', `<input type="text" id="q${index}" data-answer="${question.answer}" placeholder="..." style="width: 100px;">`)}
+                        <div class="result">Правильна відповідь: ${question.answer}</div>
+                    `;
+                    break;
+                case 'translation':
+                    const direction = question.direction === 'uk-fr' ? '🇺🇦 → 🇫🇷' : '🇫🇷 → 🇺🇦';
+                    html = `
+                        <div style="margin-bottom: 10px; color: #667eea; font-weight: bold;">${direction}</div>
+                        <div style="font-size: 16px; margin-bottom: 15px;">${question.question}</div>
+                        <input type="text" id="q${index}" data-answer="${question.answer}" placeholder="Введіть переклад..." style="width: 300px;">
                         <div class="result">Правильна відповідь: ${question.answer}</div>
                     `;
                     break;
@@ -2038,7 +2218,8 @@
                 'questions': 'Питання',
                 'sentences': 'Складання речень',
                 'context': 'Контекст',
-                'speed': 'Швидкість'
+                'speed': 'Швидкість',
+                'translation': 'Переклад'
             };
             return names[exerciseType] || exerciseType;
         }
@@ -2090,7 +2271,7 @@
         }
 
         function nextExercise() {
-            const exercises = ['conjugation', 'negation', 'questions', 'sentences', 'context', 'speed'];
+            const exercises = ['conjugation', 'negation', 'questions', 'sentences', 'context', 'speed', 'translation'];
             const currentIndex = exercises.indexOf(gameState.currentExercise);
             const nextIndex = (currentIndex + 1) % exercises.length;
             
