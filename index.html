@@ -1691,7 +1691,10 @@
                 setupSpeedTimer();
             }
 
-            resetCurrentExercise();
+            // Don't reset for review exercise
+            if (exercise !== 'review') {
+                resetCurrentExercise();
+            }
         }
 
         function generateQuestionHTML(question, index, exerciseType) {
