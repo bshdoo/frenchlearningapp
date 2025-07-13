@@ -2654,17 +2654,36 @@
 
         // Add clickable words to questions
         function addDictionaryWords() {
+            // For sentence builder: only .word-option
+            document.querySelectorAll('.sentence-builder .word-option').forEach(option => {
+                const word = option.textContent.trim().toLowerCase();
+                if (dictionary[word] && !option.classList.contains('dictionary-word')) {
+                    option.classList.add('dictionary-word');
+                    option.onclick = function(event) { showWordTooltip(word, event); };
+                }
+            });
+            // For translation and other questions: only question prompt, not input
             document.querySelectorAll('.question').forEach(question => {
-                const text = question.innerHTML;
-                const words = text.match(/\b\w+\b/g) || [];
-                
-                words.forEach(word => {
-                    const cleanWord = word.toLowerCase().replace(/[^\w]/g, '');
-                    if (dictionary[cleanWord]) {
-                        const regex = new RegExp(`\\b${word}\\b`, 'g');
-                        question.innerHTML = question.innerHTML.replace(regex, 
-                            `<span class="dictionary-word" onclick="showWordTooltip('${cleanWord}', event)">${word}</span>`
-                        );
+                // Skip if this is a sentence builder (handled above)
+                if (question.querySelector('.sentence-builder')) return;
+                // Find all direct text nodes in the question (not inside input, select, etc.)
+                Array.from(question.childNodes).forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        let html = node.textContent;
+                        // Replace only whole words that are in the dictionary
+                        html = html.replace(/\b(\w+)\b/g, (match, w) => {
+                            const cleanWord = w.toLowerCase();
+                            if (dictionary[cleanWord]) {
+                                return `<span class=\"dictionary-word\" onclick=\"showWordTooltip('${cleanWord}', event)\">${w}</span>`;
+                            }
+                            return w;
+                        });
+                        // Replace the text node with HTML only if changed
+                        if (html !== node.textContent) {
+                            const span = document.createElement('span');
+                            span.innerHTML = html;
+                            question.replaceChild(span, node);
+                        }
                     }
                 });
             });
