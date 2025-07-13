@@ -1823,7 +1823,7 @@
                 } else {
                     const input = document.getElementById(`q${index}`);
                     if (input) {
-                        userAnswer = input.value || input.selectedOptions?.[0]?.value || '';
+                        userAnswer = input.value;
                     }
                 }
                 
@@ -1960,7 +1960,6 @@
 
         function generateReviewQuestions() {
             const container = document.getElementById('reviewQuestions');
-            
             if (gameState.mistakeQuestions.length === 0) {
                 container.innerHTML = `
                     <div style="text-align: center; padding: 40px;">
@@ -1970,34 +1969,26 @@
                 `;
                 return;
             }
-            
             // Take up to 6 most recent mistakes
             const recentMistakes = gameState.mistakeQuestions.slice(-6);
             gameState.currentQuestions = recentMistakes;
-            
             container.innerHTML = '';
-            
             recentMistakes.forEach((q, index) => {
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'question';
-                
+                let explanation = q.explanation || "Ось чому ваша відповідь була неправильною: Зверніть увагу на правильну граматичну форму, порядок слів або контекст.";
                 let questionHTML = `
                     <div class="review-info">
-                        <strong>Тип вправи:</strong> ${getExerciseDisplayName(q.exerciseType)} | 
-                        <strong>Ваша попередня відповідь:</strong> "${q.userAnswer}"
+                        <strong>Тип вправи:</strong> ${getExerciseDisplayName(q.exerciseType)}<br/>
+                        <strong>Питання:</strong> ${q.question}<br/>
+                        <strong>Ваша відповідь:</strong> <span style="color:#f56565">${q.userAnswer || '(порожньо)'}</span><br/>
+                        <strong>Правильна відповідь:</strong> <span style="color:#48bb78">${q.answer}</span><br/>
+                        <strong>Пояснення:</strong> <span style="color:#718096">${explanation}</span>
                     </div>
                 `;
-                
-                questionHTML += generateQuestionHTML(q, index, q.exerciseType);
-                
                 questionDiv.innerHTML = questionHTML;
                 container.appendChild(questionDiv);
             });
-            
-            // Setup sentence building if needed
-            if (recentMistakes.some(q => q.exerciseType === 'sentences')) {
-                setupSentenceBuilding();
-            }
         }
 
         function getExerciseDisplayName(exerciseType) {
@@ -2017,6 +2008,14 @@
         }
 
         function resetCurrentExercise() {
+            // If in review mode, clear all mistakes
+            if (gameState.currentExercise === 'review') {
+                gameState.mistakeQuestions = [];
+                saveGameState();
+                generateReviewQuestions();
+                updateReviewTabVisibility();
+                return;
+            }
             // Reset all question states
             document.querySelectorAll('.question').forEach(question => {
                 question.classList.remove('correct', 'incorrect');
