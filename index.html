@@ -320,6 +320,150 @@
             margin-bottom: 10px;
             border-left: 4px solid #ffc107;
         }
+        
+        /* Dictionary styles */
+        .dictionary-word {
+            color: #667eea;
+            text-decoration: underline;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .dictionary-word:hover {
+            color: #4a5568;
+            background: #f7fafc;
+            border-radius: 3px;
+            padding: 2px 4px;
+        }
+        
+        .dictionary-tooltip {
+            position: absolute;
+            background: #2d3748;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 1000;
+            max-width: 250px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .dictionary-tooltip.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .dictionary-tooltip::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid #2d3748;
+        }
+        
+        .dictionary-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .dictionary-modal.show {
+            display: flex;
+        }
+        
+        .dictionary-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .dictionary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .dictionary-search {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .dictionary-search input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .dictionary-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .dictionary-entry {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+        }
+        
+        .dictionary-word-header {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .dictionary-translation {
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+        
+        .dictionary-type {
+            color: #718096;
+            font-size: 12px;
+            font-style: italic;
+        }
+        
+        .dictionary-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #718096;
+            padding: 5px;
+        }
+        
+        .dictionary-close:hover {
+            color: #4a5568;
+        }
     </style>
 </head>
 <body>
@@ -328,6 +472,9 @@
         <div class="header">
             <h1>🇫🇷 Французька Академія</h1>
             <p>Інтерактивне вивчення дієслів для досягнення рівня B2</p>
+            <button class="btn" onclick="openDictionary()" style="margin-top: 15px; background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+                📚 Словник
+            </button>
         </div>
 
         <!-- Stats Panel -->
@@ -464,6 +611,23 @@
 
     <div class="notification" id="notification"></div>
 
+    <!-- Dictionary Modal -->
+    <div class="dictionary-modal" id="dictionaryModal">
+        <div class="dictionary-content">
+            <div class="dictionary-header">
+                <h3>📚 Словник</h3>
+                <button class="dictionary-close" onclick="closeDictionary()">&times;</button>
+            </div>
+            <div class="dictionary-search">
+                <input type="text" id="dictionarySearch" placeholder="Введіть слово для пошуку..." onkeyup="searchDictionary()">
+                <button class="btn" onclick="searchDictionary()">Пошук</button>
+            </div>
+            <div class="dictionary-results" id="dictionaryResults">
+                <!-- Dictionary results will be populated here -->
+            </div>
+        </div>
+    </div>
+
     <script>
         // Game state
         let gameState = {
@@ -480,6 +644,107 @@
             mistakeQuestions: [],
             sentenceBuilders: {},
             usedQuestions: {}
+        };
+
+        // Dictionary data
+        const dictionary = {
+            // Common verbs
+            'être': { translation: 'бути', type: 'verb', examples: ['Je suis étudiant', 'Tu es content'] },
+            'avoir': { translation: 'мати', type: 'verb', examples: ['J\'ai faim', 'Tu as 27 ans'] },
+            'aller': { translation: 'йти', type: 'verb', examples: ['Je vais au travail', 'Tu vas à l\'école'] },
+            'faire': { translation: 'робити', type: 'verb', examples: ['Je fais mes devoirs', 'Tu fais du sport'] },
+            'pouvoir': { translation: 'могти', type: 'verb', examples: ['Je peux vous aider', 'Tu peux parler'] },
+            'vouloir': { translation: 'хотіти', type: 'verb', examples: ['Je veux dormir', 'Tu veux du thé'] },
+            'parler': { translation: 'говорити', type: 'verb', examples: ['Je parle français', 'Tu parles anglais'] },
+            'finir': { translation: 'закінчувати', type: 'verb', examples: ['Je finis le travail', 'Tu finis à l\'heure'] },
+            'prendre': { translation: 'брати', type: 'verb', examples: ['Je prends le métro', 'Tu prends le bus'] },
+            'venir': { translation: 'приходити', type: 'verb', examples: ['Je viens avec vous', 'Tu viens demain'] },
+            'sortir': { translation: 'виходити', type: 'verb', examples: ['Je sors ce soir', 'Tu sors souvent'] },
+            'boire': { translation: 'пити', type: 'verb', examples: ['Je bois du café', 'Tu bois de l\'eau'] },
+            'voir': { translation: 'бачити', type: 'verb', examples: ['Je vois le film', 'Tu vois la montagne'] },
+            'lire': { translation: 'читати', type: 'verb', examples: ['Je lis un livre', 'Tu lis le journal'] },
+            'écrire': { translation: 'писати', type: 'verb', examples: ['J\'écris une lettre', 'Tu écris un email'] },
+            'dormir': { translation: 'спати', type: 'verb', examples: ['Je dors bien', 'Tu dors huit heures'] },
+            'offrir': { translation: 'дарувати', type: 'verb', examples: ['J\'offre un cadeau', 'Tu offres des fleurs'] },
+            'mentir': { translation: 'брехати', type: 'verb', examples: ['Je mens rarement', 'Tu mens souvent'] },
+            'courir': { translation: 'бігати', type: 'verb', examples: ['Je cours vite', 'Tu cours le matin'] },
+            'mettre': { translation: 'класти', type: 'verb', examples: ['Je mets ma veste', 'Tu mets tes chaussures'] },
+            'battre': { translation: 'бити', type: 'verb', examples: ['Je bats le record', 'Tu bats le temps'] },
+            'connaître': { translation: 'знати', type: 'verb', examples: ['Je connais Paris', 'Tu connais la ville'] },
+            'suivre': { translation: 'слідувати', type: 'verb', examples: ['Je suis le cours', 'Tu suis la route'] },
+            'vivre': { translation: 'жити', type: 'verb', examples: ['Je vis ici', 'Tu vis en France'] },
+            'rire': { translation: 'сміятися', type: 'verb', examples: ['Je ris beaucoup', 'Tu ris souvent'] },
+            'comprendre': { translation: 'розуміти', type: 'verb', examples: ['Je comprends tout', 'Tu comprends la leçon'] },
+            'attendre': { translation: 'чекати', type: 'verb', examples: ['J\'attends longtemps', 'Tu attends l\'autobus'] },
+            'descendre': { translation: 'спускатися', type: 'verb', examples: ['Je descends les escaliers', 'Tu descends vite'] },
+            'répondre': { translation: 'відповідати', type: 'verb', examples: ['Je réponds aux questions', 'Tu réponds vite'] },
+            'vendre': { translation: 'продавати', type: 'verb', examples: ['Je vends ma maison', 'Tu vends ta voiture'] },
+            'entendre': { translation: 'чути', type: 'verb', examples: ['J\'entends la musique', 'Tu entends du bruit'] },
+            'perdre': { translation: 'губити', type: 'verb', examples: ['Je perds mes clés', 'Tu perds du temps'] },
+            'rendre': { translation: 'повертати', type: 'verb', examples: ['Je rends visite', 'Tu rends service'] },
+            'tendre': { translation: 'простягати', type: 'verb', examples: ['Je tends la main', 'Tu tends l\'oreille'] },
+            'défendre': { translation: 'захищати', type: 'verb', examples: ['Je défends mes idées', 'Tu défends tes droits'] },
+            'apprendre': { translation: 'вивчати', type: 'verb', examples: ['J\'apprends le français', 'Tu apprends l\'italien'] },
+            'surprendre': { translation: 'дивувати', type: 'verb', examples: ['Je surprends tout le monde', 'Tu surprends tes amis'] },
+            
+            // Common nouns
+            'étudiant': { translation: 'студент', type: 'noun', examples: ['Je suis étudiant', 'L\'étudiant travaille'] },
+            'travail': { translation: 'робота', type: 'noun', examples: ['Je vais au travail', 'Le travail est difficile'] },
+            'maison': { translation: 'будинок', type: 'noun', examples: ['Je vends ma maison', 'La maison est grande'] },
+            'voiture': { translation: 'машина', type: 'noun', examples: ['J\'ai une voiture', 'La voiture est rouge'] },
+            'école': { translation: 'школа', type: 'noun', examples: ['Je vais à l\'école', 'L\'école est fermée'] },
+            'café': { translation: 'кава', type: 'noun', examples: ['Je bois du café', 'Le café est chaud'] },
+            'livre': { translation: 'книга', type: 'noun', examples: ['Je lis un livre', 'Le livre est intéressant'] },
+            'film': { translation: 'фільм', type: 'noun', examples: ['Je vois le film', 'Le film est bon'] },
+            'musique': { translation: 'музика', type: 'noun', examples: ['J\'écoute la musique', 'La musique est belle'] },
+            'temps': { translation: 'час', type: 'noun', examples: ['J\'ai le temps', 'Le temps passe vite'] },
+            'question': { translation: 'питання', type: 'noun', examples: ['Je réponds à la question', 'La question est difficile'] },
+            'cours': { translation: 'курс', type: 'noun', examples: ['Je suis le cours', 'Le cours est intéressant'] },
+            'ville': { translation: 'місто', type: 'noun', examples: ['Je vais en ville', 'La ville est grande'] },
+            'pays': { translation: 'країна', type: 'noun', examples: ['Je vis dans ce pays', 'Le pays est beau'] },
+            'famille': { translation: 'сім\'я', type: 'noun', examples: ['J\'aime ma famille', 'La famille est importante'] },
+            'ami': { translation: 'друг', type: 'noun', examples: ['J\'ai un ami', 'L\'ami est gentil'] },
+            'professeur': { translation: 'викладач', type: 'noun', examples: ['Je parle au professeur', 'Le professeur est intelligent'] },
+            'restaurant': { translation: 'ресторан', type: 'noun', examples: ['Je vais au restaurant', 'Le restaurant est bon'] },
+            'cinéma': { translation: 'кіно', type: 'noun', examples: ['Je vais au cinéma', 'Le cinéma est ouvert'] },
+            'magasin': { translation: 'магазин', type: 'noun', examples: ['Je vais au magasin', 'Le magasin est fermé'] },
+            'hôpital': { translation: 'лікарня', type: 'noun', examples: ['Je vais à l\'hôpital', 'L\'hôpital est grand'] },
+            
+            // Common adjectives
+            'bon': { translation: 'хороший', type: 'adjective', examples: ['C\'est bon', 'Le film est bon'] },
+            'mauvais': { translation: 'поганий', type: 'adjective', examples: ['C\'est mauvais', 'Le temps est mauvais'] },
+            'grand': { translation: 'великий', type: 'adjective', examples: ['La maison est grande', 'Le livre est grand'] },
+            'petit': { translation: 'малий', type: 'adjective', examples: ['La voiture est petite', 'Le café est petit'] },
+            'nouveau': { translation: 'новий', type: 'adjective', examples: ['C\'est nouveau', 'Le livre est nouveau'] },
+            'vieux': { translation: 'старий', type: 'adjective', examples: ['C\'est vieux', 'La maison est vieille'] },
+            'beau': { translation: 'гарний', type: 'adjective', examples: ['C\'est beau', 'Le paysage est beau'] },
+            'laid': { translation: 'потворний', type: 'adjective', examples: ['C\'est laid', 'Le bâtiment est laid'] },
+            'facile': { translation: 'легкий', type: 'adjective', examples: ['C\'est facile', 'Le travail est facile'] },
+            'difficile': { translation: 'складний', type: 'adjective', examples: ['C\'est difficile', 'La question est difficile'] },
+            'intéressant': { translation: 'цікавий', type: 'adjective', examples: ['C\'est intéressant', 'Le cours est intéressant'] },
+            'ennuyeux': { translation: 'нудний', type: 'adjective', examples: ['C\'est ennuyeux', 'Le film est ennuyeux'] },
+            'rapide': { translation: 'швидкий', type: 'adjective', examples: ['C\'est rapide', 'La voiture est rapide'] },
+            'lent': { translation: 'повільний', type: 'adjective', examples: ['C\'est lent', 'Le train est lent'] },
+            'cher': { translation: 'дорогий', type: 'adjective', examples: ['C\'est cher', 'Le restaurant est cher'] },
+            'bon marché': { translation: 'дешевий', type: 'adjective', examples: ['C\'est bon marché', 'Le magasin est bon marché'] },
+            
+            // Common adverbs
+            'bien': { translation: 'добре', type: 'adverb', examples: ['Je vais bien', 'Tu parles bien'] },
+            'mal': { translation: 'погано', type: 'adverb', examples: ['Je vais mal', 'Tu parles mal'] },
+            'vite': { translation: 'швидко', type: 'adverb', examples: ['Je cours vite', 'Tu parles vite'] },
+            'lentement': { translation: 'повільно', type: 'adverb', examples: ['Je marche lentement', 'Tu parles lentement'] },
+            'souvent': { translation: 'часто', type: 'adverb', examples: ['Je vais souvent', 'Tu parles souvent'] },
+            'rarement': { translation: 'рідко', type: 'adverb', examples: ['Je vais rarement', 'Tu parles rarement'] },
+            'toujours': { translation: 'завжди', type: 'adverb', examples: ['Je vais toujours', 'Tu parles toujours'] },
+            'jamais': { translation: 'ніколи', type: 'adverb', examples: ['Je ne vais jamais', 'Tu ne parles jamais'] },
+            'maintenant': { translation: 'зараз', type: 'adverb', examples: ['Je vais maintenant', 'Tu parles maintenant'] },
+            'demain': { translation: 'завтра', type: 'adverb', examples: ['Je vais demain', 'Tu parles demain'] },
+            'hier': { translation: 'вчора', type: 'adverb', examples: ['Je suis allé hier', 'Tu as parlé hier'] },
+            'aujourd\'hui': { translation: 'сьогодні', type: 'adverb', examples: ['Je vais aujourd\'hui', 'Tu parles aujourd\'hui'] },
+            'ici': { translation: 'тут', type: 'adverb', examples: ['Je suis ici', 'Tu restes ici'] },
+            'là': { translation: 'там', type: 'adverb', examples: ['Je vais là', 'Tu es là'] },
+            'partout': { translation: 'скрізь', type: 'adverb', examples: ['Je vais partout', 'Tu cherches partout'] },
+            'nulle part': { translation: 'ніде', type: 'adverb', examples: ['Je ne vais nulle part', 'Tu ne cherches nulle part'] }
         };
 
         // Exercise data
@@ -2327,6 +2592,129 @@
 
         // Global function for sentence building
         window.clearSentence = clearSentence;
+
+        // Dictionary functions
+        function openDictionary() {
+            document.getElementById('dictionaryModal').classList.add('show');
+            searchDictionary();
+        }
+
+        function closeDictionary() {
+            document.getElementById('dictionaryModal').classList.remove('show');
+        }
+
+        function searchDictionary() {
+            const searchTerm = document.getElementById('dictionarySearch').value.toLowerCase();
+            const resultsContainer = document.getElementById('dictionaryResults');
+            
+            if (!searchTerm) {
+                // Show all entries
+                displayDictionaryResults(Object.entries(dictionary));
+                return;
+            }
+            
+            const results = Object.entries(dictionary).filter(([word, data]) => 
+                word.toLowerCase().includes(searchTerm) || 
+                data.translation.toLowerCase().includes(searchTerm)
+            );
+            
+            displayDictionaryResults(results);
+        }
+
+        function displayDictionaryResults(results) {
+            const resultsContainer = document.getElementById('dictionaryResults');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p style="text-align: center; color: #718096; padding: 20px;">Слово не знайдено</p>';
+                return;
+            }
+            
+            resultsContainer.innerHTML = results.map(([word, data]) => `
+                <div class="dictionary-entry">
+                    <div class="dictionary-word-header">${word}</div>
+                    <div class="dictionary-translation">${data.translation}</div>
+                    <div class="dictionary-type">${getTypeDisplayName(data.type)}</div>
+                    ${data.examples ? `<div style="margin-top: 8px; font-size: 12px; color: #718096;">
+                        <strong>Приклади:</strong><br>
+                        ${data.examples.map(ex => `• ${ex}`).join('<br>')}
+                    </div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function getTypeDisplayName(type) {
+            const types = {
+                'verb': 'дієслово',
+                'noun': 'іменник',
+                'adjective': 'прикметник',
+                'adverb': 'прислівник'
+            };
+            return types[type] || type;
+        }
+
+        // Add clickable words to questions
+        function addDictionaryWords() {
+            document.querySelectorAll('.question').forEach(question => {
+                const text = question.innerHTML;
+                const words = text.match(/\b\w+\b/g) || [];
+                
+                words.forEach(word => {
+                    const cleanWord = word.toLowerCase().replace(/[^\w]/g, '');
+                    if (dictionary[cleanWord]) {
+                        const regex = new RegExp(`\\b${word}\\b`, 'g');
+                        question.innerHTML = question.innerHTML.replace(regex, 
+                            `<span class="dictionary-word" onclick="showWordTooltip('${cleanWord}', event)">${word}</span>`
+                        );
+                    }
+                });
+            });
+        }
+
+        function showWordTooltip(word, event) {
+            const data = dictionary[word];
+            if (!data) return;
+            
+            const tooltip = document.createElement('div');
+            tooltip.className = 'dictionary-tooltip';
+            tooltip.innerHTML = `
+                <strong>${word}</strong><br>
+                ${data.translation}<br>
+                <em>${getTypeDisplayName(data.type)}</em>
+            `;
+            
+            document.body.appendChild(tooltip);
+            
+            const rect = event.target.getBoundingClientRect();
+            tooltip.style.left = rect.left + 'px';
+            tooltip.style.top = (rect.bottom + 5) + 'px';
+            
+            setTimeout(() => tooltip.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                tooltip.classList.remove('show');
+                setTimeout(() => tooltip.remove(), 300);
+            }, 3000);
+        }
+
+        // Close dictionary modal when clicking outside
+        document.getElementById('dictionaryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDictionary();
+            }
+        });
+
+        // Add dictionary words after generating questions
+        const originalGenerateQuestions = generateQuestions;
+        generateQuestions = function() {
+            originalGenerateQuestions();
+            setTimeout(addDictionaryWords, 100);
+        };
+
+        const originalGenerateReviewQuestions = generateReviewQuestions;
+        generateReviewQuestions = function() {
+            originalGenerateReviewQuestions();
+            setTimeout(addDictionaryWords, 100);
+        };
     </script>
 </body>
 </html>
