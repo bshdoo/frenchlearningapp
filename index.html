@@ -1611,8 +1611,22 @@
             });
 
             // Control buttons
-            document.getElementById('checkBtn').addEventListener('click', checkAnswers);
-            document.getElementById('newQuestionsBtn').addEventListener('click', generateQuestions);
+            document.getElementById('checkBtn').addEventListener('click', function() {
+                if (gameState.currentExercise === 'review') {
+                    // For review, show notification that answers are already checked
+                    showNotification('Відповіді вже перевірені! Це ваші помилки для повторення.', 'info');
+                } else {
+                    checkAnswers();
+                }
+            });
+            document.getElementById('newQuestionsBtn').addEventListener('click', function() {
+                if (gameState.currentExercise === 'review') {
+                    // For review, regenerate review questions
+                    generateReviewQuestions();
+                } else {
+                    generateQuestions();
+                }
+            });
             document.getElementById('resetBtn').addEventListener('click', resetCurrentExercise);
             document.getElementById('nextExerciseBtn').addEventListener('click', nextExercise);
         }
@@ -1975,6 +1989,7 @@
 
         function generateReviewQuestions() {
             const container = document.getElementById('reviewQuestions');
+            console.log('generateReviewQuestions called, mistakeQuestions length:', gameState.mistakeQuestions.length);
             if (gameState.mistakeQuestions.length === 0) {
                 container.innerHTML = `
                     <div style="text-align: center; padding: 40px;">
