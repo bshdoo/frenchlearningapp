@@ -1621,7 +1621,10 @@
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.querySelector(`[data-exercise="${exerciseId}"]`).classList.add('active');
             
-            resetCurrentExercise();
+            // Don't reset for review exercise
+            if (exerciseId !== 'review') {
+                resetCurrentExercise();
+            }
         }
 
         function generateQuestions() {
@@ -1631,7 +1634,6 @@
             // Special handling for review exercise
             if (exercise === 'review') {
                 generateReviewQuestions();
-                resetCurrentExercise();
                 return;
             }
             
