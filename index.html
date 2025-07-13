@@ -1587,9 +1587,16 @@
             // Tab clicks
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.addEventListener('click', function() {
-                    gameState.currentExercise = this.dataset.exercise;
-                    showExercise(this.dataset.exercise);
-                    generateQuestions();
+                    const exerciseType = this.dataset.exercise;
+                    gameState.currentExercise = exerciseType;
+                    showExercise(exerciseType);
+                    
+                    // Special handling for review exercise
+                    if (exerciseType === 'review') {
+                        generateReviewQuestions();
+                    } else {
+                        generateQuestions();
+                    }
                 });
             });
 
@@ -1987,11 +1994,21 @@
                 let explanation = q.explanation || "Ось чому ваша відповідь була неправильною: Зверніть увагу на правильну граматичну форму, порядок слів або контекст.";
                 let questionHTML = `
                     <div class="review-info">
-                        <strong>Тип вправи:</strong> ${getExerciseDisplayName(q.exerciseType)}<br/>
-                        <strong>Питання:</strong> ${q.question}<br/>
-                        <strong>Ваша відповідь:</strong> <span style="color:#f56565">${q.userAnswer || '(порожньо)'}</span><br/>
-                        <strong>Правильна відповідь:</strong> <span style="color:#48bb78">${q.answer}</span><br/>
-                        <strong>Пояснення:</strong> <span style="color:#718096">${explanation}</span>
+                        <div style="margin-bottom: 15px;">
+                            <span style="background: #667eea; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px;">${getExerciseDisplayName(q.exerciseType)}</span>
+                        </div>
+                        <div style="font-size: 16px; margin-bottom: 10px;"><strong>Питання:</strong> ${q.question}</div>
+                        <div style="margin-bottom: 10px;">
+                            <span style="color: #f56565; font-weight: bold;">❌ Ваша відповідь:</span> 
+                            <span style="color: #f56565; background: #fed7d7; padding: 2px 8px; border-radius: 4px;">${q.userAnswer || '(порожньо)'}</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <span style="color: #48bb78; font-weight: bold;">✅ Правильна відповідь:</span> 
+                            <span style="color: #48bb78; background: #c6f6d5; padding: 2px 8px; border-radius: 4px;">${q.answer}</span>
+                        </div>
+                        <div style="margin-top: 15px; padding: 10px; background: #f7fafc; border-radius: 5px; border-left: 4px solid #667eea;">
+                            <strong>💡 Пояснення:</strong> <span style="color: #718096;">${explanation}</span>
+                        </div>
                     </div>
                 `;
                 questionDiv.innerHTML = questionHTML;
