@@ -1864,6 +1864,9 @@
                             if (gameState.mistakeQuestions.length > 50) {
                                 gameState.mistakeQuestions = gameState.mistakeQuestions.slice(-50);
                             }
+                            
+                            // Save the updated mistake questions
+                            saveGameState();
                         }
                     }
                 }
